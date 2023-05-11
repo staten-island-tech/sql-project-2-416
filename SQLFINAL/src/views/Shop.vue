@@ -10,6 +10,15 @@ async function getMovies() {
   console.log(data)
 }
 
+async function addToCart(name, weekly_rent, genre, poster) {
+  const { upload } = await supabase.from('shopping_cart').insert({
+    name: `${name}`,
+    weekly_rent: `${weekly_rent}`,
+    genre: `${genre}`,
+    poster: `${poster}`
+  })
+}
+
 onMounted(() => {
   getMovies()
 })
@@ -25,6 +34,9 @@ onMounted(() => {
         <img :src="movie.poster" width="200" />
         <p>{{ movie.weekly_rent }}</p>
         <p>{{ movie.genre }}</p>
+        <button @click="addToCart(movie.name, movie.weekly_rent, movie.genre, movie.poster)">
+          Add to Cart
+        </button>
       </div>
     </div>
   </div>
@@ -40,7 +52,7 @@ onMounted(() => {
 
 .individualMovie {
   border: solid black;
-  width: 30%;
+  width: 27.5%;
   text-align: center;
 }
 </style>
