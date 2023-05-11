@@ -7,6 +7,7 @@ const movies = ref([])
 async function getMovies() {
   const { data } = await supabase.from('movie').select()
   movies.value = data
+  console.log(data)
 }
 
 onMounted(() => {
