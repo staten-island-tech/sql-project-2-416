@@ -7,6 +7,7 @@ import { supabase } from '../lib/supabaseClient'
 // async function getMovies() {
 //   const { data } = await supabase.from('movie').select()
 //   movies.value = data
+//   console.log(data)
 // }
 
 // async function addToCart(name, price, genre, poster) {
