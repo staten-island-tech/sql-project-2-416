@@ -2,62 +2,77 @@
 import { ref, onMounted } from 'vue'
 import { supabase } from '../lib/supabaseClient'
 
-// const movies = ref([])
+const amiibos = ref([])
 
-// async function getMovies() {
-//   const { data } = await supabase.from('movie').select()
-//   movies.value = data
-//   console.log(data)
-// }
+async function getMovies() {
+  const { data } = await supabase.from('amiibo').select()
+  amiibos.value = data
+}
 
-// async function addToCart(name, price, genre, poster) {
-//   const { upload } = await supabase.from('shopping_cart').insert({
-//     name: `${name}`,
-//     price: `${price}`,
-//     genre: `${genre}`,
-//     poster: `${poster}`
-//   })
-// }
-
-const movieload = ref('')
-async function getDog() {
-  let res = await fetch(`https://amiiboapi.com/api/amiibo/`)
-  let datamovie = await res.json()
-  movieload.value = datamovie
-  const { upload } = await supabase.from('amiibo')
-  movieload.amiibo.forEach(function (element) {
-    upload.insert({
-      name: `${element.name}`,
-      type: `${element.type}`,
-      gameSeries: `${element.gameSeries}`
-    })
+async function addToCart(amiiboSeries, name, type, gameSeries, character, image) {
+  const { upload } = await supabase.from('shopping_cart').insert({
+    amiiboSeries: `${amiiboSeries}`,
+    name: `${name}`,
+    type: `${type}`,
+    gameSeries: `${gameSeries}`,
+    character: `${character}`,
+    image: `${image}`
   })
 }
+
+// const movieload = ref('')
+// async function getDog() {
+//   let res = await fetch(`https://amiiboapi.com/api/amiibo/`)
+//   let datamovie = await res.json()
+//   movieload.value = datamovie
+//   movieload._rawValue.amiibo.forEach(async function (element) {
+//     const { upload } = await supabase.from('amiibo').insert({
+//       amiiboSeries: `${element.amiiboSeries}`,
+//       name: `${element.name}`,
+//       type: `${element.type}`,
+//       gameSeries: `${element.gameSeries}`,
+//       character: `${element.character}`,
+//       image: `${element.image}`
+//     })
+//   })
+// }
 
 //https://amiiboapi.com/api/amiibo/
 
 onMounted(() => {
-  getDog()
-  // getMovies()
+  // getDog()
+  getMovies()
 })
 </script>
 
 <template class="template">
-  <!-- <div id="moviesContainer">
-    <div v-for="movie in movies" :key="movies.id" class="individualMovie">
+  <div id="moviesContainer">
+    <div v-for="amiibo in amiibos" :key="amiibo.id" class="individualMovie">
       <div>
         <h2>
-          {{ movie.name }}
+          {{ amiibo.name }}
         </h2>
-        <img :src="movie.poster" width="200" />
-        <p>{{ movie.weekly_rent }}</p>
-        <p>{{ movie.genre }}</p>
-        <button @click="addToCart(movie.name, movie.price, movie.genre, movie.poster)">
+        <img :src="amiibo.image" width="200" />
+        <p>{{ amiibo.type }}</p>
+        <p>{{ amiibo.gameSeries }}</p>
+        <p>{{ amiibo.character }}</p>
+        <button
+          @click="
+            addToCart(
+              amiibo.amiiboSeries,
+              amiibo.name,
+              amiibo.type,
+              amiibo.gameSeries,
+              amiibo.character,
+              amiibo.image
+            )
+          "
+        >
           Add to Cart
         </button>
       </div>
     </div>
-  </div> -->
+  </div>
 </template>
 
 <style>
