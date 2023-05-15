@@ -4,16 +4,15 @@ import { supabase } from '../lib/supabaseClient'
 
 const amiibos = ref([])
 
-async function getMovies() {
+async function getAmiibos() {
   const { data } = await supabase.from('amiibo').select()
   amiibos.value = data
 }
 
-async function addToCart(amiiboSeries, name, type, gameSeries, character, image) {
+async function addToCart(amiiboSeries, name, gameSeries, character, image) {
   const { upload } = await supabase.from('shopping_cart').insert({
     amiiboSeries: `${amiiboSeries}`,
     name: `${name}`,
-    type: `${type}`,
     gameSeries: `${gameSeries}`,
     character: `${character}`,
     image: `${image}`
@@ -41,7 +40,7 @@ async function addToCart(amiiboSeries, name, type, gameSeries, character, image)
 
 onMounted(() => {
   // getDog()
-  getMovies()
+  getAmiibos()
 })
 </script>
 
@@ -53,7 +52,6 @@ onMounted(() => {
           {{ amiibo.name }}
         </h2>
         <img :src="amiibo.image" width="200" />
-        <p>{{ amiibo.type }}</p>
         <p>{{ amiibo.gameSeries }}</p>
         <p>{{ amiibo.character }}</p>
         <button
@@ -61,7 +59,6 @@ onMounted(() => {
             addToCart(
               amiibo.amiiboSeries,
               amiibo.name,
-              amiibo.type,
               amiibo.gameSeries,
               amiibo.character,
               amiibo.image
