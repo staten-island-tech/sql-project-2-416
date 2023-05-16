@@ -43,7 +43,7 @@ onMounted(() => {
   getAmiibos()
 })
 </script>
-
+<HeadingTemplate></HeadingTemplate>
 <template class="template">
   <div id="moviesContainer">
     <div v-for="amiibo in amiibos" :key="amiibo.id" class="individualMovie">
