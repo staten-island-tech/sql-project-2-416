@@ -12,5 +12,15 @@ export const shop = defineStore('shop', () => {
 
   getAmiibos()
 
-  return { amiibos }
+  async function addToCart(amiiboSeries, name, gameSeries, character, image) {
+    const { upload } = await supabase.from('shopping_cart').insert({
+      amiiboSeries: `${amiiboSeries}`,
+      name: `${name}`,
+      gameSeries: `${gameSeries}`,
+      character: `${character}`,
+      image: `${image}`
+    })
+  }
+
+  return { amiibos, addToCart }
 })
