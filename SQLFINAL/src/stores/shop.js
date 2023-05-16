@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { supabase } from '../lib/supabaseClient'
 import { ref } from 'vue'
 
 export const shop = defineStore('shop', () => {
