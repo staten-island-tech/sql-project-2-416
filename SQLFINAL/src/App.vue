@@ -1,8 +1,9 @@
 <script setup>
-// import Shop from './views/Shop.vue'
 import { storeToRefs } from 'pinia'
 import { shop } from '@/stores/shop'
-const { amiibos, addToCart } = storeToRefs(shop())
+import HeadingTemplate from './views/HeadingTemplate.vue'
+const store = shop()
+const { amiibos } = storeToRefs(store)
 </script>
 
 <template class="template">
@@ -17,7 +18,7 @@ const { amiibos, addToCart } = storeToRefs(shop())
         <p>{{ amiibo.character }}</p>
         <button
           @click="
-            addToCart(
+            store.addToCart(
               amiibo.amiiboSeries,
               amiibo.name,
               amiibo.gameSeries,
