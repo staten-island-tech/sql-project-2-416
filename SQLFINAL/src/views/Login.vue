@@ -1,11 +1,11 @@
 <template>
   <HeadingTemplate></HeadingTemplate>
-  <div></div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
 import { supabase } from '../lib/supabaseClient'
+import HeadingTemplate from './HeadingTemplate.vue'
 
 const users = ref([])
 
@@ -16,4 +16,4 @@ async function getUsers() {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped></style>
