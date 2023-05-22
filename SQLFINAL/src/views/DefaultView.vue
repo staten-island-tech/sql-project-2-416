@@ -18,6 +18,7 @@ const { amiibos } = storeToRefs(store)
         <h3 class="amiiboSeries">{{ amiibo.gameSeries }}</h3>
         <!--         <h3 class="amiiboName">{{ amiibo.character }}</h3> -->
         <button
+          class="button"
           @click="
             store.addToCart(
               amiibo.amiiboSeries,
@@ -36,6 +37,17 @@ const { amiibos } = storeToRefs(store)
 </template>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500;700&display=swap');
+
+html,
+body,
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 62.5%;
+  font-family: 'Raleway', sans-serif;
+}
+
 .amiiboRegister {
   font-size: 2rem;
 }
@@ -47,10 +59,25 @@ const { amiibos } = storeToRefs(store)
   flex-wrap: wrap;
 }
 
+.amiiboSeries {
+  font-size: 3rem;
+  margin: 1rem;
+}
+
+.button {
+  font-size: 2.5rem;
+  background-color: white;
+  border: solid 3px gray;
+  padding: 10px;
+  border-radius: 4rem;
+}
+
 .individualAmiibo {
-  border: solid black;
+  border: solid 1px rgb(26, 26, 26);
+  border-radius: 3px;
   width: 27.5%;
   text-align: center;
   margin: 1rem;
+  padding: 1rem;
 }
 </style>

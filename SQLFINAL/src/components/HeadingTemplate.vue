@@ -3,6 +3,7 @@
     <nav>
       <router-link to="/">Shop</router-link>
       <router-link to="Login">Login</router-link>
+      <router-link to="Cart">Login</router-link>
     </nav>
   </div>
 </template>

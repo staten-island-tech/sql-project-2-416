@@ -1,7 +1,10 @@
 <template>
   <div>
-    <router-link to="/">Store</router-link>
-    <router-link to="Login">Login</router-link>
+    <router-link class="link" to="/">Store</router-link>
+    <router-link class="link" to="Login">Login</router-link>
+    <span>
+      <router-link class="link" to="Cart">Cart</router-link>
+    </span>
   </div>
 </template>
 
@@ -11,4 +14,11 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="css" scoped>
+.link {
+  font-size: 3rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+</style>
