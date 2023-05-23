@@ -5,17 +5,17 @@
     <input id="username" type="text" />
     <label for="password">Password</label>
     <input id="password" type="text" />
-    <button type="submit">Login</button>
+    <label for="confirm">Confirm Password</label>
+    <input id="confirm" type="text" />
+    <!-- <h2 v-if="test">Same</h2> -->
+    <button type="submit">Create</button>
   </form>
-  <router-link class="link" to="/SignUp">Sign Up</router-link>
 </template>
 
 <script>
 import HeadingTemplate from './HeadingTemplate.vue'
-import { ref, onMounted } from 'vue'
-import { supabase } from '../lib/supabaseClient'
-import { defineStore } from 'pinia'
 import { defineComponent } from 'vue'
+import { defineStore } from 'pinia'
 
 export default defineComponent({
   components: {
@@ -31,15 +31,12 @@ export const useSettingsStore = defineStore('settings', {
       console.log(user)
     }
   }),
-  actions: {}
+  getters: {
+    test() {
+      return document.getElementById('password').value === document.getElementById('confirm').value
+    }
+  }
 })
-// const users = ref([])
-
-// async function getUsers() {
-//   const { data } = await supabase.from('user_stats').select()
-//   user.value = data
-//   console.log(user)
-// }
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped></style>

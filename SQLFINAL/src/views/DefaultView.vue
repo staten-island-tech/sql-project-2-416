@@ -16,7 +16,7 @@ const { amiibos } = storeToRefs(store)
         </h2>
         <img class="amiiboImage" :src="amiibo.image" width="200" />
         <h3 class="amiiboSeries">{{ amiibo.gameSeries }}</h3>
-        <!--         <h3 class="amiiboName">{{ amiibo.character }}</h3> -->
+        <h3 class="amiiboName">{{ amiibo.character }}</h3>
         <button
           class="button"
           @click="
@@ -24,7 +24,7 @@ const { amiibos } = storeToRefs(store)
               amiibo.amiiboSeries,
               amiibo.name,
               amiibo.gameSeries,
-              /*               amiibo.character, */
+              amiibo.character,
               amiibo.image
             )
           "
