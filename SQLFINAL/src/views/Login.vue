@@ -7,6 +7,7 @@
     <input id="password" type="text" />
     <button type="submit">Login</button>
   </form>
+  <router-link class="link" to="/SignUp">Sign Up</router-link>
 </template>
 
 <script>
@@ -14,16 +15,15 @@ import HeadingTemplate from './HeadingTemplate.vue'
 import { ref, onMounted } from 'vue'
 import { supabase } from '../lib/supabaseClient'
 import { defineStore } from 'pinia'
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  components: {
+    HeadingTemplate
+  }
+})
 
 export const useSettingsStore = defineStore('settings', {
-  // data() {
-  //   return {
-  //     name: '',
-  //     components: {
-  //       HeadingTemplate
-  //     }
-  //   }
-  // },
   state: () => ({
     async getUsers() {
       const { data } = await supabase.from('user_stats').select()
