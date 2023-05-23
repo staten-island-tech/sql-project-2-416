@@ -14,7 +14,17 @@ export default {
 }
 </script>
 
-<style lang="css" scoped>
+<style lang="css">
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500;700&display=swap');
+
+html,
+body,
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 62.5%;
+  font-family: 'Raleway', sans-serif;
+}
 .link {
   font-size: 3rem;
   display: flex;

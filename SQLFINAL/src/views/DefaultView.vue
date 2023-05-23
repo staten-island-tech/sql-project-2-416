@@ -17,20 +17,23 @@ const { amiibos } = storeToRefs(store)
         <img class="amiiboImage" :src="amiibo.image" width="200" />
         <h3 class="amiiboSeries">{{ amiibo.gameSeries }}</h3>
         <!--         <h3 class="amiiboName">{{ amiibo.character }}</h3> -->
-        <button
-          class="button"
-          @click="
-            store.addToCart(
-              amiibo.amiiboSeries,
-              amiibo.name,
-              amiibo.gameSeries,
-              /*               amiibo.character, */
-              amiibo.image
-            )
-          "
-        >
-          Add to Cart
-        </button>
+        <div class="buttondiv">
+          <button
+            class="buttonout"
+            type="button"
+            @click="
+              store.addToCart(
+                amiibo.amiiboSeries,
+                amiibo.name,
+                amiibo.gameSeries,
+                /*               amiibo.character, */
+                amiibo.image
+              )
+            "
+          >
+            <button type="button" class="buttonin">Add to Cart</button>
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -64,12 +67,42 @@ body,
   margin: 1rem;
 }
 
-.button {
+.buttonin {
   font-size: 2.5rem;
-  background-color: white;
-  border: solid 3px gray;
+  background-color: red;
+  color: white;
+  border: solid 3px red;
   padding: 10px;
   border-radius: 4rem;
+  transition: all 0.2s;
+}
+
+.buttonout {
+  font-size: 2.5rem;
+  background-color: white;
+  border: solid 0.5px red;
+  border-radius: 4rem;
+  transition: all 0.2s;
+}
+
+.buttonin:hover {
+  background-color: white;
+  color: red;
+}
+
+.buttonout:hover {
+  border: solid 0.1px red;
+  padding: 10px;
+  transform: scale(1.05);
+  border: 1px solid rgba(0, 0, 0, 0);
+}
+
+.buttondiv {
+  margin: 5rem;
+}
+
+.individualAmiibo:hover {
+  border: solid 1px rgb(57, 6, 6);
 }
 
 .individualAmiibo {
@@ -79,5 +112,6 @@ body,
   text-align: center;
   margin: 1rem;
   padding: 1rem;
+  transition: all 0.25s;
 }
 </style>
