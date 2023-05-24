@@ -1,13 +1,15 @@
 <template>
   <HeadingTemplate></HeadingTemplate>
-  <form class="userheaders">
-    <label for="username">Username</label>
-    <input id="username" type="text" />
-    <label for="password">Password</label>
-    <input id="password" type="text" />
-    <button type="submit">Login</button>
-  </form>
-  <router-link class="link" to="/SignUp">Sign Up</router-link>
+  <div class="containerDiv">
+    <form class="userheaders">
+      <label id="username" for="username">Username</label>
+      <input id="usernameInput" type="text" />
+      <label id="password" for="password">Password</label>
+      <input id="passwordInput" type="text" />
+      <button id="login" type="submit">Login</button>
+    </form>
+    <router-link id="login" class="link" to="/SignUp">Sign Up</router-link>
+  </div>
 </template>
 
 <script>
@@ -54,7 +56,7 @@ body,
   font-family: 'Raleway', sans-serif;
 }
 
-.userheaders {
-  font-size: 2rem;
+.containerDiv {
+  font-size: 4.5rem;
 }
 </style>
