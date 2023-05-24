@@ -1,6 +1,6 @@
 <template>
   <HeadingTemplate></HeadingTemplate>
-  <form>
+  <form id="createAccount">
     <label for="username">Username</label>
     <input id="username" type="text" />
     <label for="password">Password</label>
@@ -15,26 +15,15 @@
 <script>
 import HeadingTemplate from './HeadingTemplate.vue'
 import { defineComponent } from 'vue'
-import { defineStore } from 'pinia'
+import { userSettingsStore } from '@/stores/users'
+const settingsStore = userSettingsStore()
+const userlist = settingsStore.getUsers()
+
+console.log(settingsStore.users)
 
 export default defineComponent({
   components: {
     HeadingTemplate
-  }
-})
-
-export const useSettingsStore = defineStore('settings', {
-  state: () => ({
-    async getUsers() {
-      const { data } = await supabase.from('user_stats').select()
-      user.value = data
-      console.log(user)
-    }
-  }),
-  getters: {
-    test() {
-      return document.getElementById('password').value === document.getElementById('confirm').value
-    }
   }
 })
 </script>
