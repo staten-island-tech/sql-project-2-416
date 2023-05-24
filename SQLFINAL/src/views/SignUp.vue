@@ -1,6 +1,6 @@
 <template>
   <HeadingTemplate></HeadingTemplate>
-  <form>
+  <form class="sign">
     <label for="username">Username</label>
     <input id="username" type="text" />
     <label for="password">Password</label>
@@ -39,4 +39,18 @@ export const useSettingsStore = defineStore('settings', {
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500;700&display=swap');
+
+html,
+body,
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 62.5%;
+  font-family: 'Raleway', sans-serif;
+}
+.sign {
+  font-size: 3rem;
+}
+</style>

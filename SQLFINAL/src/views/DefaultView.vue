@@ -6,6 +6,12 @@ const store = shop()
 const { amiibos } = storeToRefs(store)
 </script>
 
+<script>
+export default {
+  name: 'DefaultView'
+}
+</script>
+
 <template class="template">
   <HeadingTemplate></HeadingTemplate>
   <div id="amiibosContainer">
@@ -79,6 +85,7 @@ body,
 
 .buttonout {
   font-size: 2.5rem;
+  margin: 2rem;
   background-color: white;
   border: solid 0.5px red;
   border-radius: 4rem;
@@ -91,10 +98,11 @@ body,
 }
 
 .buttonout:hover {
-  border: solid 0.1px red;
+  border: solid 6px red;
   padding: 10px;
   transform: scale(1.05);
   border: 1px solid rgba(0, 0, 0, 0);
+  margin: 1rem;
 }
 
 .buttondiv {
@@ -113,5 +121,6 @@ body,
   margin: 1rem;
   padding: 1rem;
   transition: all 0.25s;
+  background-color: white;
 }
 </style>
