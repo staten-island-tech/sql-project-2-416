@@ -22,6 +22,7 @@ export default {
         </h2>
         <img class="amiiboImage" :src="amiibo.image" width="200" />
         <h3 class="amiiboSeries">{{ amiibo.gameSeries }}</h3>
+        <h3 class="amiiboSeries">$ {{ amiibo.price }}.00</h3>
         <!--         <h3 class="amiiboName">{{ amiibo.character }}</h3> -->
         <div class="buttondiv">
           <button
@@ -32,8 +33,9 @@ export default {
                 amiibo.amiiboSeries,
                 amiibo.name,
                 amiibo.gameSeries,
-                /*               amiibo.character, */
-                amiibo.image
+                amiibo.character,
+                amiibo.image,
+                amiibo.price
               )
             "
           >
