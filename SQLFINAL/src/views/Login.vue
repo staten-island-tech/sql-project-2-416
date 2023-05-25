@@ -1,10 +1,10 @@
 <template>
   <HeadingTemplate></HeadingTemplate>
   <div class="containerDiv">
-    <form class="userheaders">
-      <label id="username" for="username">Username</label>
+    <form class="userheaders" @submit.prevent @click="check">
+      <label id="username" for="username" ref="username">Username</label>
       <input id="usernameInput" type="text" />
-      <label id="password" for="password">Password</label>
+      <label id="password" for="password" ref="password">Password</label>
       <input id="passwordInput" type="text" />
       <button id="login" type="submit">Login</button>
     </form>
@@ -14,10 +14,14 @@
 
 <script>
 import HeadingTemplate from './HeadingTemplate.vue'
-import { ref, onMounted } from 'vue'
-import { supabase } from '../lib/supabaseClient'
-import { defineStore } from 'pinia'
 import { defineComponent } from 'vue'
+
+import { userSettingsStore } from '@/stores/users'
+const settingsStore = userSettingsStore()
+const userlist = settingsStore.getUsers()
+const check = settingsStore.check()
+
+console.log(settingsStore)
 
 export default defineComponent({
   components: {
@@ -25,16 +29,6 @@ export default defineComponent({
   }
 })
 
-export const useSettingsStore = defineStore('settings', {
-  state: () => ({
-    async getUsers() {
-      const { data } = await supabase.from('user_stats').select()
-      user.value = data
-      console.log(user)
-    }
-  }),
-  actions: {}
-})
 // const users = ref([])
 
 // async function getUsers() {

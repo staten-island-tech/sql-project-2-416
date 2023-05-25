@@ -12,8 +12,8 @@ export const userSettingsStore = defineStore('settings', {
       const { data } = await supabase.from('user_stats').select()
       this.users.value = data
     },
-    async check(username) {
-      return (await supabase.from('user_stats').select('username')) == username
+    async check() {
+      console.log(await supabase.from('user_stats').select().eq('username', 'TestUser'))
     }
   }
 })
