@@ -23,7 +23,7 @@ export default {
         <img class="amiiboImage" :src="amiibo.image" width="200" />
         <h3 class="amiiboSeries">{{ amiibo.gameSeries }}</h3>
         <h3 class="amiiboSeries">$ {{ amiibo.price }}.00</h3>
-        <!--         <h3 class="amiiboName">{{ amiibo.character }}</h3> -->
+        <h3 class="amiiboName">{{ amiibo.character }}</h3>
         <div class="buttondiv">
           <button
             class="buttonout"
@@ -34,8 +34,7 @@ export default {
                 amiibo.name,
                 amiibo.gameSeries,
                 amiibo.character,
-                amiibo.image,
-                amiibo.price
+                amiibo.image
               )
             "
           >
@@ -68,6 +67,10 @@ body,
   flex-direction: row;
   justify-content: space-evenly;
   flex-wrap: wrap;
+}
+
+.amiiboName {
+  font-size: 1.5rem;
 }
 
 .amiiboSeries {
