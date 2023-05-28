@@ -34,7 +34,8 @@ export default {
                 amiibo.name,
                 amiibo.gameSeries,
                 amiibo.character,
-                amiibo.image
+                amiibo.image,
+                amiibo.price //Components from shop.js that the function looks for
               )
             "
           >

@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { supabase } from '../lib/supabaseClient'
+import { ref } from 'vue'
 
 export const userSettingsStore = defineStore('settings', {
   state: () => {
@@ -13,7 +14,7 @@ export const userSettingsStore = defineStore('settings', {
       this.users.value = data
     },
     async check() {
-      console.log(await supabase.from('user_stats').select().eq('username', 'TestUser'))
+      console.log(await supabase.from('user_stats').select().eq('username', 'TestUser')) //Gets TestUser information from Supabase
     }
   }
 })
