@@ -4,10 +4,11 @@
     <label for="username">Username</label>
     <input id="username" type="text" ref="username" />
     <label for="password">Password</label>
-    <input id="password" type="text" />
+    <input id="password" type="text" ref="password" />
     <label for="confirm">Confirm Password</label>
-    <input id="confirm" type="text" />
+    <input id="confirm" type="text" ref="confirm" />
     <button type="submit">Create</button>
+    <h2 v-show="this.$refs.password === this.$refs.confirm">Same</h2>
   </form>
   <!-- <div v-if="userCheck(this.$refs.username.value)">Same</div> -->
 </template>

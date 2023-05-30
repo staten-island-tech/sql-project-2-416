@@ -4,40 +4,32 @@ import { defineComponent } from 'vue'
 
 import { userSettingsStore } from '@/stores/users'
 const settingsStore = userSettingsStore()
-const userlist = settingsStore.getUsers()
+// const userlist = settingsStore.getUsers()
 
 export default {
   components: {
     HeadingTemplate
   },
   methods: {
-    userCheck(username) {
-      settingsStore.check(username)
+    getUsers(username) {
+      settingsStore.getUsers(username)
     }
   }
 }
-
-// const users = ref([])
-
-// async function getUsers() {
-//   const { data } = await supabase.from('user_stats').select()
-//   user.value = data
-//   console.log(user)
-// }
 </script>
-
 <template>
   <HeadingTemplate></HeadingTemplate>
   <div class="containerDiv">
-    <form class="userheaders" @submit.prevent @click="userCheck(this.$refs.username.value)">
+    <form class="userheaders" @submit.prevent @click="getUsers(this.$refs.username.value)">
       <label id="username" for="username">Username</label>
       <input id="usernameInput" type="text" ref="username" />
-      <label id="password" for="password" ref="password">Password</label>
-      <input id="passwordInput" type="text" />
+      <label id="password" for="password">Password</label>
+      <input id="passwordInput" type="text" ref="password" />
       <button id="login" type="submit">Login</button>
     </form>
     <router-link id="login" class="link" to="/SignUp">Sign Up</router-link>
   </div>
+  <!-- <h2 v-if=""></h2> -->
 </template>
 
 <style scoped>
