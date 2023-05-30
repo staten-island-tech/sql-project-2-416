@@ -1,17 +1,3 @@
-<template>
-  <HeadingTemplate></HeadingTemplate>
-  <div class="containerDiv">
-    <form class="userheaders" @submit.prevent @click="check">
-      <label id="username" for="username" ref="username">Username</label>
-      <input id="usernameInput" type="text" />
-      <label id="password" for="password" ref="password">Password</label>
-      <input id="passwordInput" type="text" />
-      <button id="login" type="submit">Login</button>
-    </form>
-    <router-link id="login" class="link" to="/SignUp">Sign Up</router-link>
-  </div>
-</template>
-
 <script>
 import HeadingTemplate from './HeadingTemplate.vue'
 import { defineComponent } from 'vue'
@@ -19,15 +5,17 @@ import { defineComponent } from 'vue'
 import { userSettingsStore } from '@/stores/users'
 const settingsStore = userSettingsStore()
 const userlist = settingsStore.getUsers()
-const check = settingsStore.check()
 
-console.log(settingsStore)
-
-export default defineComponent({
+export default {
   components: {
     HeadingTemplate
+  },
+  methods: {
+    userCheck(username) {
+      settingsStore.check(username)
+    }
   }
-})
+}
 
 // const users = ref([])
 
@@ -37,6 +25,20 @@ export default defineComponent({
 //   console.log(user)
 // }
 </script>
+
+<template>
+  <HeadingTemplate></HeadingTemplate>
+  <div class="containerDiv">
+    <form class="userheaders" @submit.prevent @click="userCheck(this.$refs.username.value)">
+      <label id="username" for="username">Username</label>
+      <input id="usernameInput" type="text" ref="username" />
+      <label id="password" for="password" ref="password">Password</label>
+      <input id="passwordInput" type="text" />
+      <button id="login" type="submit">Login</button>
+    </form>
+    <router-link id="login" class="link" to="/SignUp">Sign Up</router-link>
+  </div>
+</template>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500;700&display=swap');

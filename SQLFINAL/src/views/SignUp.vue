@@ -2,14 +2,14 @@
   <HeadingTemplate></HeadingTemplate>
   <form class="sign">
     <label for="username">Username</label>
-    <input id="username" type="text" />
+    <input id="username" type="text" ref="username" />
     <label for="password">Password</label>
     <input id="password" type="text" />
     <label for="confirm">Confirm Password</label>
     <input id="confirm" type="text" />
-    <!-- <h2 v-if="test">Same</h2> -->
     <button type="submit">Create</button>
   </form>
+  <!-- <div v-if="userCheck(this.$refs.username.value)">Same</div> -->
 </template>
 
 <script>
@@ -19,13 +19,16 @@ import { userSettingsStore } from '@/stores/users'
 const settingsStore = userSettingsStore()
 const userlist = settingsStore.getUsers()
 
-console.log(settingsStore.users)
-
-export default defineComponent({
+export default {
   components: {
     HeadingTemplate
+  },
+  methods: {
+    userCheck(username) {
+      settingsStore.check(username)
+    }
   }
-})
+}
 </script>
 
 <style scoped>
