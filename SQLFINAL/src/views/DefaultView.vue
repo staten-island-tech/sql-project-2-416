@@ -2,6 +2,10 @@
 import { storeToRefs } from 'pinia'
 import { shop } from '@/stores/shop'
 import HeadingTemplate from './HeadingTemplate.vue'
+import AmiiboCard from '../components/AmiiboCard.vue'
+import { useAmiiboStore } from '../stores/shop.js'
+const AmiiboStore = useAmiiboStore() //AmiiboStore is defined with the useAmiiboStore const
+AmiiboStore.fill() //The "fill" action is used. This puts the data array into amiibos1.
 const store = shop()
 const { amiibos } = storeToRefs(store)
 </script>
@@ -14,6 +18,19 @@ export default {
 
 <template class="template">
   <HeadingTemplate></HeadingTemplate>
+  <!--Replace amiibos with Amiibostore.amiibos1 to continue working on issue-->
+  <div id="amiibosContainer">
+    <AmiiboCard
+      v-for="amiibo in amiibos"
+      :key="amiibo.id"
+      :name="amiibo.name"
+      :image="amiibo.image"
+      :gameSeries="amiibo.gameSeries"
+      :price="amiibo.price"
+      :character="amiibo.character"
+    />
+  </div>
+  <!-- 
   <div id="amiibosContainer">
     <div v-for="amiibo in amiibos" :key="amiibo.id" class="individualAmiibo">
       <div>
@@ -44,89 +61,14 @@ export default {
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500;700&display=swap');
-
-html,
-body,
-* {
-  margin: 0;
-  padding: 0;
-  font-size: 62.5%;
-  font-family: 'Raleway', sans-serif;
-}
-
-.amiiboRegister {
-  font-size: 2rem;
-}
-
 #amiibosContainer {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   flex-wrap: wrap;
-}
-
-.amiiboName {
-  font-size: 1.5rem;
-}
-
-.amiiboSeries {
-  font-size: 3rem;
-  margin: 1rem;
-}
-
-.buttonin {
-  font-size: 2.5rem;
-  background-color: red;
-  color: white;
-  border: solid 3px red;
-  padding: 10px;
-  border-radius: 4rem;
-  transition: all 0.2s;
-}
-
-.buttonout {
-  font-size: 2.5rem;
-  margin: 2rem;
-  background-color: white;
-  border: solid 0.5px red;
-  border-radius: 4rem;
-  transition: all 0.2s;
-}
-
-.buttonin:hover {
-  background-color: white;
-  color: red;
-}
-
-.buttonout:hover {
-  border: solid 6px red;
-  padding: 10px;
-  transform: scale(1.05);
-  border: 1px solid rgba(0, 0, 0, 0);
-  margin: 1rem;
-}
-
-.buttondiv {
-  margin: 5rem;
-}
-
-.individualAmiibo:hover {
-  border: solid 1px rgb(57, 6, 6);
-}
-
-.individualAmiibo {
-  border: solid 1px rgb(26, 26, 26);
-  border-radius: 3px;
-  width: 27.5%;
-  text-align: center;
-  margin: 1rem;
-  padding: 1rem;
-  transition: all 0.25s;
-  background-color: white;
 }
 </style>

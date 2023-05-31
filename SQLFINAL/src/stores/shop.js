@@ -25,32 +25,19 @@ export const shop = defineStore('shop', () => {
 
   return { amiibos, addToCart }
 })
-
-//The code below does not work. I attempted to convert it into vue options code, but all it returns at the moment is an empty page when you go to the store. When you inspect and go to Vue, it shows the "amiibos" array as empty. I will keep looking into this.
-
-/* export const useShop = defineStore('shop', {
-  methods: {},
+// ----------------------------
+// Vue version of inserting data into the cards
+export const useAmiiboStore = defineStore('AmiiboStore', {
   state: () => {
-    //state that all other components use. Returns to global.
     return {
-      amiibos: []
+      amiibos1: [] //Defines array and returns it (will be used in the DefaultView file)
     }
   },
   actions: {
-    async getAmiibos() {
-      const amiibos = ref([])
-      const { data } = await supabase.from('amiibo').select()
-      amiibos.value = data
-    },
-    async addToCart(amiiboSeries, name, gameSeries, character, image, price) {
-      const { upload } = await supabase.from('shopping_cart').insert({
-        amiiboSeries: `${amiiboSeries}`,
-        name: `${name}`,
-        gameSeries: `${gameSeries}`,
-        character: `${character}`,
-        image: `${image}`,
-        price: `${price}`
-      })
+    async fill() {
+      const { data } = await supabase.from('amiibo').select() //Gets array and puts it into data
+      this.amiibos1 = data //data is put into this.amiibos1
+      console.log(this.amiibos1)
     }
   }
-}) */
+})
