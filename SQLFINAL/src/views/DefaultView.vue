@@ -1,19 +1,14 @@
 <script setup>
 import { storeToRefs } from 'pinia'
+import { ref, onMounted } from 'vue'
 import { shop } from '@/stores/shop'
+const store = shop()
+const { amiibos } = storeToRefs(store)
 import HeadingTemplate from './HeadingTemplate.vue'
 import AmiiboCard from '../components/AmiiboCard.vue'
 import { useAmiiboStore } from '../stores/shop.js'
 const AmiiboStore = useAmiiboStore() //AmiiboStore is defined with the useAmiiboStore const
-AmiiboStore.fill() //The "fill" action is used. This puts the data array into amiibos1.
-const store = shop()
-const { amiibos } = storeToRefs(store)
-</script>
-
-<script>
-export default {
-  name: 'DefaultView'
-}
+AmiiboStore
 </script>
 
 <template class="template">
@@ -21,7 +16,7 @@ export default {
   <!--Replace amiibos with Amiibostore.amiibos1 to continue working on issue-->
   <div id="amiibosContainer">
     <AmiiboCard
-      v-for="amiibo in amiibos"
+      v-for="amiibo in AmiiboStore.amiibos1"
       :key="amiibo.id"
       :name="amiibo.name"
       :image="amiibo.image"
