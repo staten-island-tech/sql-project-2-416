@@ -1,7 +1,6 @@
 <script>
 import HeadingTemplate from './HeadingTemplate.vue'
 import { defineComponent } from 'vue'
-
 import { userSettingsStore } from '@/stores/users'
 const settingsStore = userSettingsStore()
 // const userlist = settingsStore.getUsers()
@@ -11,8 +10,10 @@ export default {
     HeadingTemplate
   },
   methods: {
-    getUsers(username) {
+    getUsers(username, password) {
       settingsStore.getUsers(username)
+      console.log(settingsStore.users)
+      if (settingsStore.users.value[0].password == password) console.log('Works')
     }
   }
 }
@@ -20,12 +21,18 @@ export default {
 <template>
   <HeadingTemplate></HeadingTemplate>
   <div class="containerDiv">
-    <form class="userheaders" @submit.prevent @click="getUsers(this.$refs.username.value)">
+    <form class="userheaders">
       <label id="username" for="username">Username</label>
       <input id="usernameInput" type="text" ref="username" />
       <label id="password" for="password">Password</label>
       <input id="passwordInput" type="text" ref="password" />
-      <button id="login" type="submit">Login</button>
+      <button
+        id="login"
+        type="submit"
+        @click.prevent="getUsers(this.$refs.username.value, this.$refs.password.value)"
+      >
+        Login
+      </button>
     </form>
     <router-link id="login" class="link" to="/SignUp">Sign Up</router-link>
   </div>
