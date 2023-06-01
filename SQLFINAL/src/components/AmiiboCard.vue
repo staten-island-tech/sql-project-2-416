@@ -7,13 +7,32 @@
     <h3 class="amiiboSeries">{{ gameSeries }}</h3>
     <h3 class="amiiboSeries">$ {{ price }}.00</h3>
     <h3 class="amiiboName">{{ character }}</h3>
-    <div class="buttondiv">
-      <button class="buttonout" type="button">
-        <button type="button" class="buttonin">Add to Cart</button>
-      </button>
-    </div>
+    <AmiiboButton
+      @click="
+        store.addToCart(
+          name,
+          image,
+          gameSeries,
+          price,
+          character,
+
+          amiiboSeries
+
+          //Components from shop.js that the function looks for
+        )
+      "
+    />
   </div>
 </template>
+
+<script setup>
+import AmiiboButton from '../components/AmiiboButton.vue'
+import { shop } from '@/stores/shop'
+const store = shop()
+import AmiiboCard from '../components/AmiiboCard.vue'
+import { useAmiiboStore } from '../stores/shop.js'
+const AmiiboStore = useAmiiboStore() //AmiiboStore is defined with the useAmiiboStore const
+</script>
 
 <script>
 export default {
@@ -27,7 +46,8 @@ export default {
     image: String,
     gameSeries: String,
     price: Number,
-    character: String
+    character: String,
+    amiiboSeries: String
   },
   computed: {
     getImage: function () {
@@ -67,42 +87,6 @@ body,
 .amiiboSeries {
   font-size: 3rem;
   margin: 1rem;
-}
-
-.buttonin {
-  font-size: 2.5rem;
-  background-color: red;
-  color: white;
-  border: solid 3px red;
-  padding: 10px;
-  border-radius: 4rem;
-  transition: all 0.2s;
-}
-
-.buttonout {
-  font-size: 2.5rem;
-  margin: 2rem;
-  background-color: white;
-  border: solid 0.5px red;
-  border-radius: 4rem;
-  transition: all 0.2s;
-}
-
-.buttonin:hover {
-  background-color: white;
-  color: red;
-}
-
-.buttonout:hover {
-  border: solid 6px red;
-  padding: 10px;
-  transform: scale(1.05);
-  border: 1px solid rgba(0, 0, 0, 0);
-  margin: 1rem;
-}
-
-.buttondiv {
-  margin: 5rem;
 }
 
 .individualAmiibo:hover {

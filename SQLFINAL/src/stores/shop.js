@@ -3,27 +3,20 @@ import { supabase } from '../lib/supabaseClient'
 import { ref } from 'vue'
 
 export const shop = defineStore('shop', () => {
-  const amiibos = ref([])
-
-  async function getAmiibos() {
-    const { data } = await supabase.from('amiibo').select()
-    amiibos.value = data
-  }
-
-  getAmiibos()
-
-  async function addToCart(amiiboSeries, name, gameSeries, character, image, price) {
+  async function addToCart(name, image, gameSeries, price, character, amiiboSeries) {
     const { upload } = await supabase.from('shopping_cart').insert({
-      amiiboSeries: `${amiiboSeries}`,
       name: `${name}`,
-      gameSeries: `${gameSeries}`,
-      character: `${character}`,
       image: `${image}`,
-      price: `${price}` //Components that are inserted into the card (These need to match with those in Default.view)
+      gameSeries: `${gameSeries}`,
+      price: `${price}`,
+      character: `${character}`,
+      amiiboSeries: `${amiiboSeries}`
+
+      //Components that are inserted into the card (These need to match with those in Default.view)
     })
   }
 
-  return { amiibos, addToCart }
+  return { addToCart }
 })
 // ----------------------------
 // Vue version of inserting data into the cards
