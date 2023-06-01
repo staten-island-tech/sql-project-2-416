@@ -11,9 +11,9 @@ export default {
   },
   methods: {
     getUsers(username, password) {
-      settingsStore.getUsers(username)
-      console.log(settingsStore.users)
-      if (settingsStore.users.value[0].password == password) console.log('Works')
+      settingsStore.getUsers(username, () => {
+        if (settingsStore.users.value[0].password == password) console.log('Works')
+      })
     }
   }
 }
