@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia' //defines the file for devtools
 import { supabase } from '../lib/supabaseClient'
-import { ref } from 'vue'
 
 export const shop = defineStore('shop', () => {
   async function addToCart(name, image, gameSeries, price, character, amiiboSeries) {

@@ -1,14 +1,15 @@
 <template>
   <HeadingTemplate></HeadingTemplate>
   <form class="sign">
-    <label for="username">Username</label>
-    <input id="username" type="text" ref="username" />
+    <label for="email">Username</label>
+    <input id="email" type="text" ref="email" />
     <label for="password">Password</label>
     <input id="password" type="text" ref="password" />
     <label for="confirm">Confirm Password</label>
     <input id="confirm" type="text" ref="confirm" />
-    <button type="submit">Create</button>
-    <h2 v-show="this.$refs.password === this.$refs.confirm">Same</h2>
+    <button type="submit" @click.prevent="userCreate(this.$refs.email, this.$refs.password)">
+      Create
+    </button>
   </form>
   <!-- <div v-if="userCheck(this.$refs.username.value)">Same</div> -->
 </template>
@@ -16,19 +17,14 @@
 <script>
 import HeadingTemplate from './HeadingTemplate.vue'
 import { defineComponent } from 'vue'
-import { userSettingsStore } from '@/stores/users'
-const settingsStore = userSettingsStore()
-const userlist = settingsStore.getUsers()
+import { users } from '@/stores/signup'
+import { supabase } from '../lib/supabaseClient'
 
 export default {
   components: {
     HeadingTemplate
   },
-  methods: {
-    userCheck(username) {
-      settingsStore.check(username)
-    }
-  }
+  methods: {}
 }
 </script>
 
