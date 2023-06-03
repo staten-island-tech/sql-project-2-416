@@ -15,7 +15,6 @@
           gameSeries,
           price,
           character,
-
           amiiboSeries
 
           //Components from shop.js that the function looks for

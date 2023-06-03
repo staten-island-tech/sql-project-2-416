@@ -9,8 +9,10 @@
       <!-- ${USER } -->
       Sign Out
     </button>
+    <h2 class="displayLog" v-if="userInfo.user.value != undefined">
+      Logged in: {{ userInfo.user.value.email }}
+    </h2>
   </div>
-  <h2 v-if="userInfo.user.value != undefined">{{ userInfo.user.value.email }}</h2>
 </template>
 
 <script>
@@ -19,16 +21,20 @@ import { userInformation } from '@/stores/users'
 const userInfo = userInformation()
 
 export default {
-  name: 'HeadingTemplate',
-  methods: {
-    async logOut() {
-      const { error } = await supabase.auth.signOut()
-      if (error) {
-        console.log(error)
-      } else {
-        console.log('Success')
-        userInfo.user = {}
-        userInfo.loggedIn = false
+  state: () => {
+    return {
+      name: 'HeadingTemplate',
+      methods: {
+        async logOut() {
+          const { error } = await supabase.auth.signOut()
+          if (error) {
+            console.log(error)
+          } else {
+            console.log('Success')
+            userInfo.user = {}
+            userInfo.loggedIn = false
+          }
+        }
       }
     }
   }
@@ -59,5 +65,9 @@ body,
 .router {
   border: solid black 1px;
   border-radius: 10px;
+}
+
+.displayLog {
+  font-size: 2rem;
 }
 </style>

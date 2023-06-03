@@ -22,14 +22,14 @@ export const shop = defineStore('shop', () => {
 export const useAmiiboStore = defineStore('AmiiboStore', {
   state: () => {
     return {
-      amiibos1: [] //Defines array and returns it (will be used in the DefaultView file)
+      amiibos: [] //Defines array and returns it (will be used in the DefaultView file)
     }
   },
   actions: {
     async fill() {
       const { data } = await supabase.from('amiibo').select() //Gets array and puts it into data
-      this.amiibos1 = data //data is put into this.amiibos1
-      console.log(this.amiibos1)
+      this.amiibos = data //data is put into this.amiibos1
+      // console.log(this.amiibos)
     }
   }
 })
