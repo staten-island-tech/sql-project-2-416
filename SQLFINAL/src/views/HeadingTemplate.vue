@@ -10,14 +10,13 @@
       Sign Out
     </button>
   </div>
-  <h2 v-if="userInfo.loggedIn">{{ userInfo.user.value.email }}</h2>
+  <h2 v-if="userInfo.user.value != undefined">{{ userInfo.user.value.email }}</h2>
 </template>
 
 <script>
 import { supabase } from '../lib/supabaseClient.js'
 import { userInformation } from '@/stores/users'
 const userInfo = userInformation()
-// const loggedIn = window.localStorage.getItem("loggedIn")
 
 export default {
   name: 'HeadingTemplate',
@@ -30,7 +29,6 @@ export default {
         console.log('Success')
         userInfo.user = {}
         userInfo.loggedIn = false
-        // window.localStorage.setItem('loggedIn', false)
       }
     }
   }

@@ -8,10 +8,8 @@
 
 <script>
 export default {
-  methods: {
-    addToCart() {
-      console.log(userInfo.loggedIn)
-    }
+  setup() {
+    return {}
   }
 }
 </script>

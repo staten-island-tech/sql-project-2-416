@@ -29,13 +29,9 @@
 import AmiiboButton from '../components/AmiiboButton.vue'
 import { shop } from '@/stores/shop'
 const store = shop()
-
 import AmiiboCard from '../components/AmiiboCard.vue'
-import { useAmiiboStore } from '@/stores/shop.js'
+import { useAmiiboStore } from '../stores/shop.js'
 const AmiiboStore = useAmiiboStore() //AmiiboStore is defined with the useAmiiboStore const
-
-import { userInformation } from '@/stores/users'
-const userInfo = userInformation()
 </script>
 
 <script>
