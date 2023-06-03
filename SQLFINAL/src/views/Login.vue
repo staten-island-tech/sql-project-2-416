@@ -1,19 +1,35 @@
 <script>
 import HeadingTemplate from './HeadingTemplate.vue'
-import { defineComponent } from 'vue'
-import { userSettingsStore } from '@/stores/users'
-const settingsStore = userSettingsStore()
-// const userlist = settingsStore.getUsers()
+import { defineComponent, ref } from 'vue'
+import { supabase } from '../lib/supabaseClient'
+import { userInformation } from '@/stores/users'
+
+const userInfo = userInformation()
 
 export default {
+  data() {
+    return {
+      email: ref(''),
+      password: ref('')
+    }
+  },
   components: {
     HeadingTemplate
   },
   methods: {
-    getUsers(username, password) {
-      settingsStore.getUsers(username, () => {
-        if (settingsStore.users.value[0].password == password) console.log('Works')
+    async getUsers() {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: this.email,
+        password: this.password
       })
+      if (error) {
+        console.log(error)
+      } else {
+        console.log(data)
+        ;(userInfo.user.value = { email: this.email, password: this.password }),
+          (userInfo.loggedIn = true)
+      }
+      console.log(userInfo.user.value, userInfo.loggedIn)
     }
   }
 }
@@ -22,17 +38,11 @@ export default {
   <HeadingTemplate></HeadingTemplate>
   <div class="containerDiv">
     <form class="userheaders">
-      <label id="username" for="username">Username</label>
-      <input id="usernameInput" type="text" ref="username" />
+      <label id="username" for="email">Email</label>
+      <input id="emailInput" type="text" v-model="email" />
       <label id="password" for="password">Password</label>
-      <input id="passwordInput" type="text" ref="password" />
-      <button
-        id="login"
-        type="submit"
-        @click.prevent="getUsers(this.$refs.username.value, this.$refs.password.value)"
-      >
-        Login
-      </button>
+      <input id="passwordInput" type="text" v-model="password" />
+      <button id="login" type="submit" @click.prevent="getUsers">Login</button>
     </form>
     <router-link id="login" class="link" to="/SignUp">Sign Up</router-link>
   </div>

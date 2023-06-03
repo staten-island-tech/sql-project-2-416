@@ -5,16 +5,33 @@
     <span>
       <router-link class="link" to="Cart">Cart</router-link>
     </span>
-    <h1 class="link">
+    <button class="link" @click.prevent="logOut">
       <!-- ${USER } -->
-      is logged in
-    </h1>
+      Sign Out
+    </button>
   </div>
+  <h2 v-if="userInfo.user.value != undefined">{{ userInfo.user.value.email }}</h2>
 </template>
 
 <script>
+import { supabase } from '../lib/supabaseClient.js'
+import { userInformation } from '@/stores/users'
+const userInfo = userInformation()
+
 export default {
-  name: 'HeadingTemplate'
+  name: 'HeadingTemplate',
+  methods: {
+    async logOut() {
+      const { error } = await supabase.auth.signOut()
+      if (error) {
+        console.log(error)
+      } else {
+        console.log('Success')
+        userInfo.user = {}
+        userInfo.loggedIn = false
+      }
+    }
+  }
 }
 </script>
 
