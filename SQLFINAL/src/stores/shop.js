@@ -1,18 +1,25 @@
 import { defineStore } from 'pinia' //defines the file for devtools
 import { supabase } from '../lib/supabaseClient'
 
+import { userInformation } from '@/stores/users'
+const userInfo = userInformation()
+
 export const shop = defineStore('shop', () => {
   async function addToCart(name, image, gameSeries, price, character, amiiboSeries) {
-    const { upload } = await supabase.from('shopping_cart').insert({
-      name: `${name}`,
-      image: `${image}`,
-      gameSeries: `${gameSeries}`,
-      price: `${price}`,
-      character: `${character}`,
-      amiiboSeries: `${amiiboSeries}`
+    if (userInfo.loggedIn) {
+      const { upload } = await supabase.from('shopping_cart').insert({
+        name: `${name}`,
+        image: `${image}`,
+        gameSeries: `${gameSeries}`,
+        price: `${price}`,
+        character: `${character}`,
+        amiiboSeries: `${amiiboSeries}`
 
-      //Components that are inserted into the card (These need to match with those in Default.view)
-    })
+        //Components that are inserted into the card (These need to match with those in Default.view)
+      })
+    } else {
+      location.replace(`${location.href}Login`)
+    }
   }
 
   return { addToCart }

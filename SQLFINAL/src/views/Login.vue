@@ -28,6 +28,7 @@ export default {
         console.log(data)
         ;(userInfo.user.value = { email: this.email, password: this.password }),
           (userInfo.loggedIn = true)
+        // window.localStorage.setItem('loggedIn', true)
       }
       console.log(userInfo.user.value, userInfo.loggedIn)
     }
