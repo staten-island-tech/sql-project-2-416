@@ -13,7 +13,7 @@ AmiiboStore.fill()
   <!--Replace amiibos with Amiibostore.amiibos1 to continue working on issue-->
   <div id="amiibosContainer">
     <AmiiboCard
-      v-for="amiibo in AmiiboStore.amiibos1"
+      v-for="amiibo in AmiiboStore.amiibos"
       :key="amiibo.id"
       :name="amiibo.name"
       :image="amiibo.image"

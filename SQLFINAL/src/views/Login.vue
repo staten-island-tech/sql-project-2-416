@@ -1,9 +1,9 @@
 <script>
 import HeadingTemplate from './HeadingTemplate.vue'
+import logOut from './HeadingTemplate.vue'
 import { defineComponent, ref } from 'vue'
 import { supabase } from '../lib/supabaseClient'
 import { userInformation } from '@/stores/users'
-
 const userInfo = userInformation()
 
 export default {
@@ -36,6 +36,9 @@ export default {
   }
 }
 </script>
+
+<script setup></script>
+
 <template>
   <HeadingTemplate></HeadingTemplate>
   <div class="containerDiv">
@@ -46,7 +49,8 @@ export default {
       <input id="passwordInput" type="text" v-model="password" />
       <button id="login" type="submit" @click.prevent="getUsers">Login</button>
     </form>
-    <router-link id="login" class="link" to="/SignUp">Sign Up</router-link>
+    <!--     <h2 class="loginClick" v-if="(this.userInfo.user = true)">TEST</h2> -->
+    <router-link id="login" class="loginClick" to="/SignUp">Sign Up</router-link>
   </div>
   <!-- <h2 v-if=""></h2> -->
 </template>
@@ -65,5 +69,9 @@ body,
 
 .containerDiv {
   font-size: 4.5rem;
+}
+
+.loginClick {
+  font-size: 4rem;
 }
 </style>

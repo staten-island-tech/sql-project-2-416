@@ -9,8 +9,10 @@
       <!-- ${USER } -->
       Sign Out
     </button>
+    <h2 class="displayLog" v-if="userInfo.user.value != undefined">
+      Logged in: {{ userInfo.user.value.email }}
+    </h2>
   </div>
-  <h2 v-if="userInfo.user.value != undefined">{{ userInfo.user.value.email }}</h2>
 </template>
 
 <script>
@@ -83,5 +85,9 @@ body,
 .router {
   border: solid black 1px;
   border-radius: 10px;
+}
+
+.displayLog {
+  font-size: 2rem;
 }
 </style>
