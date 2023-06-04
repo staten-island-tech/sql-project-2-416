@@ -26,10 +26,12 @@ export default {
         console.log(error)
       } else {
         console.log(data)
-        ;(userInfo.user.value = { email: this.email, password: this.password }),
-          (userInfo.loggedIn = true)
+        userInfo.user.value = { email: this.email, password: this.password }
+        localStorage.setItem('loggedIn', true)
+        localStorage.setItem('email', this.email)
+        localStorage.setItem('password', this.password)
+        console.log(userInfo.user.value)
       }
-      console.log(userInfo.user.value, userInfo.loggedIn)
     }
   }
 }

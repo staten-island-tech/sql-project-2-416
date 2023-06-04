@@ -2,15 +2,15 @@ import { defineStore } from 'pinia' //defines the file for devtools
 import { supabase } from '../lib/supabaseClient'
 
 export const shop = defineStore('shop', () => {
-  async function addToCart(name, image, gameSeries, price, character, amiiboSeries) {
+  async function addToCart(name, image, gameSeries, price, character, amiiboSeries, email) {
     const { upload } = await supabase.from('shopping_cart').insert({
       name: `${name}`,
       image: `${image}`,
       gameSeries: `${gameSeries}`,
       price: `${price}`,
       character: `${character}`,
-      amiiboSeries: `${amiiboSeries}`
-
+      amiiboSeries: `${amiiboSeries}`,
+      email: `${email}`
       //Components that are inserted into the card (These need to match with those in Default.view)
     })
   }

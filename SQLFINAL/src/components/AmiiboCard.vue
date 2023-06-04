@@ -15,9 +15,8 @@
           gameSeries,
           price,
           character,
-
-          amiiboSeries
-
+          amiiboSeries,
+          this.email
           //Components from shop.js that the function looks for
         )
       "
@@ -35,10 +34,13 @@ const AmiiboStore = useAmiiboStore() //AmiiboStore is defined with the useAmiibo
 </script>
 
 <script>
+import { userInformation } from '@/stores/users'
+const userInfo = userInformation()
 export default {
   data() {
     return {
-      title: 'AmiiboCard'
+      title: 'AmiiboCard',
+      email: localStorage.getItem('email')
     }
   },
   props: {

@@ -20,6 +20,23 @@ const userInfo = userInformation()
 
 export default {
   name: 'HeadingTemplate',
+  async mounted() {
+    console.log(userInfo.user)
+    if (localStorage.getItem('loggedIn') == 'true') {
+      console.log('true')
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: localStorage.getItem('email'),
+        password: localStorage.getItem('password')
+      })
+      userInfo.user.value = {
+        email: localStorage.getItem('email'),
+        password: localStorage.getItem('password')
+      }
+    } else {
+      console.log('false')
+    }
+    console.log(userInfo.user)
+  },
   methods: {
     async logOut() {
       const { error } = await supabase.auth.signOut()
@@ -28,8 +45,15 @@ export default {
       } else {
         console.log('Success')
         userInfo.user = {}
-        userInfo.loggedIn = false
+        localStorage.clear()
+        localStorage.setItem('loggedIn', false)
       }
+    },
+    async autoLogIn(email, password) {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: email,
+        password: password
+      })
     }
   }
 }
