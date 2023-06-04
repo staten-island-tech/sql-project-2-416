@@ -5,7 +5,8 @@ export const userInformation = defineStore('settings', {
     return {
       user: {
         email: localStorage.getItem('email'),
-        password: localStorage.getItem('password')
+        password: localStorage.getItem('password'),
+        loggedIn: localStorage.getItem('loggedIn')
       }
     }
   }
