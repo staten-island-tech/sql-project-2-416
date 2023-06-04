@@ -9,8 +9,8 @@
       <!-- ${USER } -->
       Sign Out
     </button>
-    <h2 class="displayLog" v-if="userInfo.user.value != undefined">
-      Logged in: {{ userInfo.user.value.email }}
+    <h2 class="displayLog" v-if="userInfo.user != undefined">
+      Logged in: {{ userInfo.user.email }}
     </h2>
   </div>
 </template>
@@ -27,13 +27,9 @@ export default {
     if (localStorage.getItem('loggedIn') == 'true') {
       console.log('true')
       const { data, error } = await supabase.auth.signInWithPassword({
-        email: localStorage.getItem('email'),
-        password: localStorage.getItem('password')
+        email: userInfo.user.email,
+        password: userInfo.user.password
       })
-      userInfo.user.value = {
-        email: localStorage.getItem('email'),
-        password: localStorage.getItem('password')
-      }
     } else {
       console.log('false')
     }

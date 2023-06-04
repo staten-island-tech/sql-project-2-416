@@ -30,7 +30,7 @@ import { shop } from '@/stores/shop'
 const store = shop()
 import AmiiboCard from '../components/AmiiboCard.vue'
 import { useAmiiboStore } from '../stores/shop.js'
-const AmiiboStore = useAmiiboStore() //AmiiboStore is defined with the useAmiiboStore const
+const AmiiboStore = useAmiiboStore()
 </script>
 
 <script>
@@ -40,7 +40,7 @@ export default {
   data() {
     return {
       title: 'AmiiboCard',
-      email: localStorage.getItem('email')
+      email: userInfo.user.email
     }
   },
   props: {
