@@ -22,7 +22,7 @@ export default {
   name: 'HeadingTemplate',
   async mounted() {
     console.log(userInfo.user)
-    if (localStorage.getItem('loggedIn') == 'true') {
+    if (localStorage.getItem('loggedIn') == 'false') {
       console.log('true')
       const { data, error } = await supabase.auth.signInWithPassword({
         email: userInfo.user.email,
