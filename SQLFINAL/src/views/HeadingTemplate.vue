@@ -1,17 +1,15 @@
 <template>
   <div class="router">
     <router-link class="link" to="/">Store</router-link>
-    <router-link class="link" to="Login">Login</router-link>
     <span>
       <router-link class="link" to="Cart">Cart</router-link>
     </span>
+    <router-link class="link" to="Login">Login</router-link>
     <button class="link" @click.prevent="logOut">
       <!-- ${USER } -->
       Sign Out
     </button>
-    <h2 class="displayLog" v-if="userInfo.user != undefined">
-      Logged in: {{ userInfo.user.email }}
-    </h2>
+    <h2 class="displayLog">Logged in: {{ userInfo.user.email }}</h2>
   </div>
 </template>
 
