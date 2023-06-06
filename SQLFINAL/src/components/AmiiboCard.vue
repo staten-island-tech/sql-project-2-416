@@ -7,7 +7,7 @@
     <h3 class="amiiboSeries">{{ gameSeries }}</h3>
     <h3 class="amiiboSeries">$ {{ price }}.00</h3>
     <h3 class="amiiboName">{{ character }}</h3>
-    <AmiiboButton
+    <!-- <AmiiboButton
       @click="
         store.addToCart(
           name,
@@ -20,7 +20,10 @@
           //Components from shop.js that the function looks for
         )
       "
-    />
+    /> -->
+    <AmiiboButton
+      @click="store.addToCart(name, image, gameSeries, price, character, amiiboSeries)"
+    ></AmiiboButton>
   </div>
 </template>
 

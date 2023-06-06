@@ -31,7 +31,7 @@ export default {
         localStorage.setItem('loggedIn', true)
         localStorage.setItem('email', this.email)
         localStorage.setItem('password', this.password)
-        console.log(userInfo.user.value)
+        console.log(userInfo.user)
       }
     }
   }

@@ -29,9 +29,8 @@ export default {
         password: userInfo.user.password
       })
     } else {
-      console.log('false')
+      console.log(userInfo.user)
     }
-    console.log(userInfo.user)
   },
   methods: {
     async logOut() {
