@@ -9,6 +9,8 @@
       <!-- ${USER } -->
       Sign Out
     </button>
+    <h2 class="displayLog" v-if="userInfo.user.loggedIn == 'true'">User is IN</h2>
+    <h2 class="displayLog" v-if="userInfo.user.LoggedIn == 'false'">User is OUT</h2>
     <h2 class="displayLog">Logged in: {{ userInfo.user.email }}</h2>
   </div>
 </template>
