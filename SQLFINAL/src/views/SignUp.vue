@@ -35,7 +35,9 @@ export default {
       //   email: this.email,
       //   password: this.password
       // })
-      const { data, error } = await supabase.from('shopping_cart').insert([{ email: this.email }])
+      const { data, error } = await supabase
+        .from('shopping_cart')
+        .insert([{ email: this.email, amiibo: [], respectiveCount: [] }])
       if (error) {
         console.log(error)
       } else {
