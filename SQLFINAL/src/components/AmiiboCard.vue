@@ -11,7 +11,9 @@
     <!-- <AmiiboButton
       @click="store.addToCart(name, image, gameSeries, price, character, amiiboSeries)"
     ></AmiiboButton> -->
-    <AmiiboButton @click="store.addToCart(userInfo.user.shoppingCart, id)"></AmiiboButton>
+    <AmiiboButton
+      @click="store.addToCart(userInfo.user.shoppingCart, userInfo.user.respectiveCount, id)"
+    ></AmiiboButton>
   </div>
 </template>
 

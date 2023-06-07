@@ -5,7 +5,7 @@ import { userInformation } from '@/stores/users'
 const userInfo = userInformation()
 
 export const shop = defineStore('shop', () => {
-  async function addToCart(cart, itemToAdd) {
+  async function addToCart(cart, respectiveCount, itemToAdd) {
     if (userInfo.user.loggedIn == 'true') {
       if (cart.length == 0) {
         const { data, error } = await supabase // Updates the database
@@ -17,7 +17,7 @@ export const shop = defineStore('shop', () => {
           .eq('email', userInfo.user.email)
         console.log(`error: ${error}, data: ${data}`)
         cart.push(itemToAdd) // Updates locally so that on the next click, it will not run this if statement again
-        userInfo.user.respectiveCount.push(1) // Adds an element, "1" to the count array
+        respectiveCount.push(1) // Adds an element, "1" to the count array
       } else {
         if (cart.indexOf(itemToAdd) != -1) {
           // Checks if the item is already in the cart
