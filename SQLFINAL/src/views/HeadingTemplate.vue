@@ -22,12 +22,18 @@ export default {
   name: 'HeadingTemplate',
   async mounted() {
     console.log(userInfo.user)
-    if (localStorage.getItem('loggedIn') == 'false') {
+    if (localStorage.getItem('loggedIn') == 'true') {
       console.log('true')
-      const { data, error } = await supabase.auth.signInWithPassword({
+      await supabase.auth.signInWithPassword({
         email: userInfo.user.email,
         password: userInfo.user.password
       })
+      const { data } = await supabase
+        .from('shopping_cart')
+        .select()
+        .eq('email', userInfo.user.email)
+      console.log(data[0])
+      // userInfo.user.shoppingCart =
     } else {
       console.log(userInfo.user)
     }

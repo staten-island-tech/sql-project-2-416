@@ -27,23 +27,19 @@ export const shop = defineStore('shop', () => {
       const { data, error } = await supabase
         .from('shopping_cart')
         .update({
-          email: 'ckwong6599@gmail.com'
+          name: [name],
+          image: [image],
+          gameSeries: [gameSeries],
+          price: [price],
+          character: [character],
+          amiiboSeries: [amiiboSeries]
         })
-        .eq('id', 110)
-      // .from('shopping_cart')
-      // .select()
-      // .update({
-      //   name: `${name}`,
-      //   image: `${image}`,
-      //   gameSeries: `${gameSeries}`,
-      //   price: `${price}`,
-      //   character: `${character}`,
-      //   amiiboSeries: `${amiiboSeries}`
-      // })
-      // .eq('email', userInfo.user.email)
-
+        .eq('email', userInfo.user.email)
       console.log(error)
       console.log(data)
+    } else if (userInfo.user.loggedIn == 'false' || undefined) {
+      // Why doesn't it work?
+      location.replace(`${location.href}Login`)
     }
   }
 
