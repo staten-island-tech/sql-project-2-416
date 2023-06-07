@@ -27,7 +27,6 @@ export default {
       } else {
         console.log(data)
         userInfo.user = { email: this.email, password: this.password, loggedIn: true }
-        localStorage.clear()
         localStorage.setItem('loggedIn', true)
         localStorage.setItem('email', this.email)
         localStorage.setItem('password', this.password)
