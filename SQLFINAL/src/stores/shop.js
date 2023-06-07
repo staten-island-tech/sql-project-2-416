@@ -27,9 +27,9 @@ export const shop = defineStore('shop', () => {
       const { data, error } = await supabase
         .from('shopping_cart')
         .update({
-          email: 'ckwong6599@gmail.com'
+          email: 'test@gmail.com'
         })
-        .eq('id', 110)
+        .eq('email', 'ckwong6599@gmail.com')
       // .from('shopping_cart')
       // .select()
       // .update({

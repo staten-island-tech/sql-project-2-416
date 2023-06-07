@@ -31,10 +31,11 @@ export default {
   },
   methods: {
     async createUser(userEmail, userPassword) {
-      const { data, error } = await supabase.auth.signUp({
-        email: this.email,
-        password: this.password
-      })
+      // const { data, error } = await supabase.auth.signUp({
+      //   email: this.email,
+      //   password: this.password
+      // })
+      const { data, error } = await supabase.from('shopping_cart').insert([{ email: this.email }])
       if (error) {
         console.log(error)
       } else {
