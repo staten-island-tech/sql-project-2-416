@@ -23,7 +23,6 @@ const userInfo = userInformation()
 export default {
   name: 'HeadingTemplate',
   async mounted() {
-    console.log(userInfo.user)
     if (localStorage.getItem('loggedIn') == 'true') {
       console.log('true')
       await supabase.auth.signInWithPassword({
@@ -34,8 +33,9 @@ export default {
         .from('shopping_cart')
         .select()
         .eq('email', userInfo.user.email)
-      console.log(data[0])
-      // userInfo.user.shoppingCart =
+      console.log(data)
+      userInfo.user.shoppingCart = data[0].amiibo
+      userInfo.user.respectiveCount = data[0].respectiveCount
     } else {
       console.log(userInfo.user)
     }

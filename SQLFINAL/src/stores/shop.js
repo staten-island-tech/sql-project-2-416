@@ -5,40 +5,48 @@ import { userInformation } from '@/stores/users'
 const userInfo = userInformation()
 
 export const shop = defineStore('shop', () => {
-  // async function addToCart(name, image, gameSeries, price, character, amiiboSeries, email) {
-  //   if (userInfo.user.loggedIn == `true`) {
-  //     const { upload } = await supabase.from('shopping_cart_old').insert({
-  //       name: `${name}`,
-  //       image: `${image}`,
-  //       gameSeries: `${gameSeries}`,
-  //       price: `${price}`,
-  //       character: `${character}`,
-  //       amiiboSeries: `${amiiboSeries}`,
-  //       email: `${email}`
-  //       //Components that are inserted into the card (These need to match with those in Default.view)
-  //     })
-  //   } else {
-  //     location.replace(`${location.href}Login`)
-  //   }
-  // }
-
-  async function addToCart(name, image, gameSeries, price, character, amiiboSeries) {
+  async function addToCart(cart, itemToAdd) {
     if (userInfo.user.loggedIn == 'true') {
-      const { data, error } = await supabase
-        .from('shopping_cart')
-        .update({
-          name: [name],
-          image: [image],
-          gameSeries: [gameSeries],
-          price: [price],
-          character: [character],
-          amiiboSeries: [amiiboSeries]
-        })
-        .eq('email', userInfo.user.email)
-      console.log(error)
-      console.log(data)
+      if (cart.length == 0) {
+        const { data, error } = await supabase // Updates the database
+          .from('shopping_cart')
+          .update({
+            amiibo: [itemToAdd],
+            respectiveCount: [1]
+          })
+          .eq('email', userInfo.user.email)
+        console.log(`error: ${error}, data: ${data}`)
+        cart.push(itemToAdd) // Updates locally so that on the next click, it will not run this if statement again
+        userInfo.user.respectiveCount.push(1) // Adds an element, "1" to the count array
+      } else {
+        if (cart.indexOf(itemToAdd) != -1) {
+          // Checks if the item is already in the cart
+
+          let indexOfItem = cart.indexOf(itemToAdd) // Checks for the index of the item
+          let itemCount = userInfo.user.respectiveCount[indexOfItem] // Stores its value
+          userInfo.user.respectiveCount.splice(indexOfItem, 1, itemCount + 1) // Updates the count array
+          const { data, error } = await supabase // Updates the database
+            .from('shopping_cart')
+            .update({
+              amiibo: cart,
+              respectiveCount: userInfo.user.respectiveCount
+            })
+            .eq('email', userInfo.user.email)
+        } else {
+          cart.push(itemToAdd) // Adds the new item to the cart array
+          userInfo.user.respectiveCount.push(1) // Adds an element, "1" to the count array
+          const { data, error } = await supabase // Updates the database
+            .from('shopping_cart')
+            .update({
+              amiibo: cart,
+              respectiveCount: userInfo.user.respectiveCount
+            })
+            .eq('email', userInfo.user.email)
+          console.log(`error: ${error}, data: ${data}`)
+        }
+      }
     } else if (userInfo.user.loggedIn == 'false' || undefined) {
-      // Why doesn't it work?
+      // Relocates to login page, also why doesn't "else" work?
       location.replace(`${location.href}Login`)
     }
   }
@@ -55,7 +63,8 @@ export const useAmiiboStore = defineStore('AmiiboStore', {
   },
   actions: {
     async fill() {
-      const { data } = await supabase.from('amiibo').select() //Gets array and puts it into data
+      // Gets all amiibos
+      const { data } = await supabase.from('amiibo').select() // Gets array and puts it into data
       this.amiibos = data //data is put into this.amiibos1
       // console.log(this.amiibos)
     }

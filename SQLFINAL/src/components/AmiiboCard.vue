@@ -3,27 +3,15 @@
     <h2 class="amiiboRegister">
       {{ name }}
     </h2>
+    <h2>{{ id }}</h2>
     <img class="amiiboImage" :src="getImage" width="200" />
     <h3 class="amiiboSeries">{{ gameSeries }}</h3>
     <h3 class="amiiboSeries">$ {{ price }}.00</h3>
     <h3 class="amiiboName">{{ character }}</h3>
     <!-- <AmiiboButton
-      @click="
-        store.addToCart(
-          name,
-          image,
-          gameSeries,
-          price,
-          character,
-          amiiboSeries,
-          this.email
-          //Components from shop.js that the function looks for
-        )
-      "
-    /> -->
-    <AmiiboButton
       @click="store.addToCart(name, image, gameSeries, price, character, amiiboSeries)"
-    ></AmiiboButton>
+    ></AmiiboButton> -->
+    <AmiiboButton @click="store.addToCart(userInfo.user.shoppingCart, id)"></AmiiboButton>
   </div>
 </template>
 
@@ -47,6 +35,7 @@ export default {
     }
   },
   props: {
+    id: Number,
     name: String,
     image: String,
     gameSeries: String,

@@ -14,13 +14,13 @@ AmiiboStore.fill()
   <div id="amiibosContainer">
     <AmiiboCard
       v-for="amiibo in AmiiboStore.amiibos"
-      :key="amiibo.id"
       :name="amiibo.name"
       :image="amiibo.image"
       :gameSeries="amiibo.gameSeries"
       :price="amiibo.price"
       :character="amiibo.character"
       :amiiboSeries="amiibo.amiiboSeries"
+      :id="amiibo.id"
     />
   </div>
 </template>
