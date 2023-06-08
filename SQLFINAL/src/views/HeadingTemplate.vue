@@ -1,23 +1,29 @@
 <template>
   <div class="router">
     <button class="buttonout" type="button">
-      <button type="button" class="buttonin"><router-link class="link" to="/">Store</router-link></button>
-    </button>
-     
-     <button class="buttonout" type="button">
-      <button type="button" class="buttonin"><router-link class="link" to="Cart" >Cart</router-link></button>
+      <button type="button" class="buttonin">
+        <router-link class="link" to="/">Store</router-link>
+      </button>
     </button>
 
     <button class="buttonout" type="button">
-      <button type="button" class="buttonin"> <router-link class="link" to="Login">Login</router-link></button>
+      <button type="button" class="buttonin">
+        <router-link class="link" to="Cart">Cart</router-link>
+      </button>
     </button>
 
-    <button class="buttonout" type="button" v-if="userInfo.user.loggedIn == true">
-      <button type="button" class="buttonin" @click.prevent="logOut" v-if="userInfo.user.loggedIn == true">Sign Out</button>
+    <button class="buttonout" type="button">
+      <button type="button" class="buttonin" @click.prevent="logOut" v-if="userInfo.user.loggedIn">
+        Sign Out
+      </button>
+      <button type="button" class="buttonin" v-else>
+        <router-link class="link" to="Login">Login</router-link>
+      </button>
     </button>
 
-
-    <h2 class="displayLog" v-if="userInfo.user.loggedIn == true">Logged in: {{ userInfo.user.email }}</h2>
+    <h2 class="displayLog" v-if="userInfo.user.loggedIn == true">
+      Logged in: {{ userInfo.user.email }}
+    </h2>
   </div>
 </template>
 
@@ -49,7 +55,7 @@ export default {
       } else {
         console.log('Success')
         userInfo.user.email = null
-        userInfo.user.loggedIn == false
+        userInfo.user.loggedIn = false
       }
     }
   }
@@ -72,19 +78,19 @@ body,
   font-family: 'Raleway', sans-serif;
 }
 .link {
-  text-decoration: none; 
-  color: black; 
+  text-decoration: none;
+  color: black;
   margin-left: 10rem;
   margin: 2rem;
   font-size: 3rem;
 }
 
-.link:visited{
- text-decoration: none; 
- color: black; 
+.link:visited {
+  text-decoration: none;
+  color: black;
 }
 
-.button{
+.button {
   align-items: center;
   justify-content: center;
   margin: 5px;
@@ -93,7 +99,7 @@ body,
 .router {
   border: solid black 5px;
   border-radius: 10px;
-  padding: .5rem;
+  padding: 0.5rem;
 }
 
 .displayLog {
@@ -102,7 +108,6 @@ body,
   justify-content: center;
   padding: 1rem;
 }
-
 
 .buttonin {
   font-size: 2.5rem;
@@ -135,5 +140,4 @@ body,
   border: 1px solid rgba(0, 0, 0, 0);
   margin: 1.36rem;
 }
-
 </style>
