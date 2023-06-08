@@ -12,13 +12,12 @@
       <button type="button" class="buttonin"> <router-link class="link" to="Login">Login</router-link></button>
     </button>
 
-    <button class="buttonout" type="button" v-if="userInfo.user.loggedIn == 'true'">
-      <button type="button" class="buttonin" @click.prevent="logOut" v-if="userInfo.user.loggedIn == 'true'">Sign Out</button>
+    <button class="buttonout" type="button" v-if="userInfo.user.loggedIn == true">
+      <button type="button" class="buttonin" @click.prevent="logOut" v-if="userInfo.user.loggedIn == true">Sign Out</button>
     </button>
 
-<!--     <h2 class="displayLog" v-if="userInfo.user.loggedIn == 'true'">User is IN</h2>
-    <h2 class="displayLog" v-else>User is OUT</h2> -->
-    <h2 class="displayLog" v-if="userInfo.user.loggedIn == 'true'">Logged in: {{ userInfo.user.email }}</h2>
+
+    <h2 class="displayLog" v-if="userInfo.user.loggedIn == true">Logged in: {{ userInfo.user.email }}</h2>
   </div>
 </template>
 
