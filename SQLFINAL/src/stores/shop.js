@@ -5,62 +5,34 @@ import { userInformation } from '@/stores/users'
 const userInfo = userInformation()
 
 export const shop = defineStore('shop', () => {
-  async function addToCart1(itemToAdd) {if (userInfo.user.loggedIn == 'true') {
-    const { data, error} = await supabase.from('amiibo_cart').insert({amiibo_id: itemToAdd}).eq('email', userInfo.user.email)
-    console.log(`error: ${error}, data: ${data}`)
-  }}
-
-  
-  async function addToCart(cart, respectiveCount, itemToAdd) {
-    console.log(userInfo.user.loggedIn)
-    if (userInfo.user.loggedIn == 'true') {
-      if (cart.length == 0) {
-        const { data, error } = await supabase // Updates the database
-          .from('shopping_cart')
+  async function addToCart(id, price) {
+    if (userInfo.user.loggedIn == true) {
+      const checkIfSame = await supabase
+        .from('amiibo_cart')
+        .select()
+        .eq('email', userInfo.user.email)
+        .eq('amiibo_id', id)
+      console.log(checkIfSame.data)
+      if (checkIfSame.data.length > 0) {
+        await supabase
+          .from('amiibo_cart')
           .update({
-            amiibo: [itemToAdd],
-            respectiveCount: [1]
+            count: checkIfSame.data[0].count + 1
           })
           .eq('email', userInfo.user.email)
-        console.log(`error: ${error}, data: ${data}`)
-        cart.push(itemToAdd) // Updates locally so that on the next click, it will not run this if statement again
-        respectiveCount.push(1) // Adds an element, "1" to the count array
+          .eq('amiibo_id', id)
       } else {
-        if (cart.indexOf(itemToAdd) != -1) {
-          // Checks if the item is already in the cart
-
-          let indexOfItem = cart.indexOf(itemToAdd) // Checks for the index of the item
-          let itemCount = userInfo.user.respectiveCount[indexOfItem] // Stores its value
-          userInfo.user.respectiveCount.splice(indexOfItem, 1, itemCount + 1) // Updates the count array
-          const { data, error } = await supabase // Updates the database
-            .from('shopping_cart')
-            .update({
-              amiibo: cart,
-              respectiveCount: userInfo.user.respectiveCount
-            })
-            .eq('email', userInfo.user.email)
-        } else {
-          console.log('2a. no')
-          cart.push(itemToAdd) // Adds the new item to the cart array
-          userInfo.user.respectiveCount.push(1) // Adds an element, "1" to the count array
-          const { data, error } = await supabase // Updates the database
-            .from('shopping_cart')
-            .update({
-              amiibo: cart,
-              respectiveCount: userInfo.user.respectiveCount
-            })
-            .eq('email', userInfo.user.email)
-          console.log(`error: ${error}, data: ${data}`)
-        }
+        const { data, error } = await supabase
+          .from('amiibo_cart')
+          .insert({ email: userInfo.user.email, amiibo_id: id, price: price, count: 1 })
+          .select()
+        console.log(data)
       }
-    } else if (userInfo.user.loggedIn == 'false' || undefined) {
-      // Relocates to login page, also why doesn't "else" work?
-      //Else may only look for true / false. If something is true, then the else should be false. It does not look for undefined.
+    } else {
       location.replace(`${location.href}Login`)
     }
-  } 
-  return {addToCart, addToCart1 }
-
+  }
+  return { addToCart }
 })
 // ----------------------------
 // Vue version of inserting data into the cards

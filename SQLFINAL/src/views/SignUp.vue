@@ -10,6 +10,7 @@
     <button v-if="samePassword() && this.password != ''" @click.prevent="createUser">Create</button>
     <button v-else @click.prevent="createUser" disabled>Create</button>
   </form>
+  <div id="result"></div>
   <h1 id="duplicateEmail" ref="duplicateEmail"></h1>
 </template>
 
@@ -31,26 +32,16 @@ export default {
   },
   methods: {
     async createUser() {
-      const emailExists = await supabase.from('shopping_cart').select().eq('email', this.email)
-      console.log(emailExists)
-      if (emailExists.data.length > 0) {
-        this.$refs.duplicateEmail.innerHTML = 'Duplicate'
+      const signUpData = await supabase.auth.signUp({
+        email: this.email,
+        password: this.password
+      })
+      // Security issues or something
+      if (signUpData.data.user.identities.length == 0) {
+        document.getElementById('result').innerHTML = 'Duplicate'
       } else {
-        const signUpData = await supabase.auth.signUp({
-          email: this.email,
-          password: this.password
-        })
-        await supabase
-          .from('shopping_cart')
-          .insert([{ email: this.email, amiibo: [], respectiveCount: [] }])
-          await supabase
-          .from('amiibo_cart')
-          .insert([{ email: this.email,  }])
-        if (signUpData.error) {
-          console.log(signUpData.error)
-        } else {
-          console.log(signUpData.data)
-        }
+        let divvy = document.createElement('div')
+        document.getElementById('result').innerHTML = 'Confirm through email'
       }
     },
     samePassword() {

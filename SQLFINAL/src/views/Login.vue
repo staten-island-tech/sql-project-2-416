@@ -23,15 +23,11 @@ export default {
         email: this.email,
         password: this.password
       })
-      if (error) {
-        console.log(error)
+      if (data.user.identities.length != 0) {
+        userInfo.user.email = this.email
+        userInfo.user.loggedIn = true
       } else {
-        console.log(data)
-        userInfo.user = { email: this.email, password: this.password, loggedIn: 'true' }
-        localStorage.setItem('loggedIn', true)
-        localStorage.setItem('email', this.email)
-        localStorage.setItem('password', this.password)
-        console.log(userInfo.user)
+        console.log('No')
       }
     }
   }

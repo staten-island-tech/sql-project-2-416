@@ -9,8 +9,8 @@
       <!-- ${USER } -->
       Sign Out
     </button>
-    <h2 class="displayLog" v-if="userInfo.user.loggedIn == 'true'">User is IN</h2>
-    <h2 class="displayLog" v-if="userInfo.user.LoggedIn == 'false'">User is OUT</h2>
+    <h2 class="displayLog" v-if="userInfo.user.loggedIn == true">User is IN</h2>
+    <h2 class="displayLog" v-else>User is OUT</h2>
     <h2 class="displayLog">Logged in: {{ userInfo.user.email }}</h2>
   </div>
 </template>
@@ -23,21 +23,12 @@ const userInfo = userInformation()
 export default {
   name: 'HeadingTemplate',
   async mounted() {
-    if (localStorage.getItem('loggedIn') == 'true') {
-      console.log('true')
-      await supabase.auth.signInWithPassword({
-        email: userInfo.user.email,
-        password: userInfo.user.password
-      })
-      const { data } = await supabase
-        .from('shopping_cart')
-        .select()
-        .eq('email', userInfo.user.email)
-      console.log(data)
-      userInfo.user.shoppingCart = data[0].amiibo
-      userInfo.user.respectiveCount = data[0].respectiveCount
-    } else {
-      console.log(userInfo.user)
+    const { data, error } = await supabase.auth.getSession()
+    console.log(data)
+    console.log(error)
+    if (data.session) {
+      userInfo.user.loggedIn = true
+      userInfo.user.email = data.session.user.email
     }
   },
   methods: {
@@ -47,16 +38,9 @@ export default {
         console.log(error)
       } else {
         console.log('Success')
-        userInfo.user = {}
-        localStorage.clear()
-        localStorage.setItem('loggedIn', false)
+        userInfo.user.email = null
+        userInfo.user.loggedIn == false
       }
-    },
-    async autoLogIn(email, password) {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email: email,
-        password: password
-      })
     }
   }
 }

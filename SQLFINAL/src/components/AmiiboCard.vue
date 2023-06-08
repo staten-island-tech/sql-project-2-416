@@ -3,7 +3,6 @@
     <h2 class="amiiboRegister">
       {{ name }}
     </h2>
-    <h2>{{ id }}</h2>
     <img class="amiiboImage" :src="getImage" width="200" />
     <h3 class="amiiboSeries">{{ gameSeries }}</h3>
     <h3 class="amiiboSeries">$ {{ price }}.00</h3>
@@ -11,9 +10,7 @@
     <!-- <AmiiboButton
       @click="store.addToCart(name, image, gameSeries, price, character, amiiboSeries)"
     ></AmiiboButton> -->
-    <AmiiboButton
-      @click="store.addToCart(userInfo.user.shoppingCart, userInfo.user.respectiveCount, id)"
-    ></AmiiboButton>
+    <AmiiboButton @click="store.addToCart(id, price)"></AmiiboButton>
   </div>
 </template>
 
@@ -30,8 +27,8 @@ const userInfo = userInformation()
 export default {
   data() {
     return {
-      title: 'AmiiboCard',
-      email: userInfo.user.email
+      title: 'AmiiboCard'
+      // email: userInfo.user.email
     }
   },
   props: {
