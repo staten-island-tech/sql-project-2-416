@@ -10,7 +10,7 @@
     <button v-if="samePassword() && this.password != ''" @click.prevent="createUser">Create</button>
     <button v-else @click.prevent="createUser" disabled>Create</button>
   </form>
-  <!-- <div v-if="userCheck(this.$refs.username.value)">Same</div> -->
+  <h1 id="duplicateEmail" ref="duplicateEmail"></h1>
 </template>
 
 <script>
@@ -30,20 +30,24 @@ export default {
     HeadingTemplate
   },
   methods: {
-    async createUser(userEmail, userPassword) {
-      const { data, error } = await supabase.from('shopping_cart').select().eq('email', userEmail)
-
-      const signUpData = await supabase.auth.signUp({
-        email: this.email,
-        password: this.password
-      })
-      await supabase
-        .from('shopping_cart')
-        .insert([{ email: this.email, amiibo: [], respectiveCount: [] }])
-      if (signUpData.error) {
-        console.log(signUpData.error)
+    async createUser() {
+      const emailExists = await supabase.from('shopping_cart').select().eq('email', this.email)
+      console.log(emailExists)
+      if (emailExists.data.length > 0) {
+        this.$refs.duplicateEmail.innerHTML = 'Duplicate'
       } else {
-        console.log(signUpData.data)
+        const signUpData = await supabase.auth.signUp({
+          email: this.email,
+          password: this.password
+        })
+        await supabase
+          .from('shopping_cart')
+          .insert([{ email: this.email, amiibo: [], respectiveCount: [] }])
+        if (signUpData.error) {
+          console.log(signUpData.error)
+        } else {
+          console.log(signUpData.data)
+        }
       }
     },
     samePassword() {

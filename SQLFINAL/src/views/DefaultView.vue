@@ -1,6 +1,4 @@
 <script setup>
-import { storeToRefs } from 'pinia'
-import { ref, onMounted } from 'vue'
 import HeadingTemplate from './HeadingTemplate.vue'
 import AmiiboCard from '../components/AmiiboCard.vue'
 import { useAmiiboStore } from '../stores/shop.js'
