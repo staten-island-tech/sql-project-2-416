@@ -1,17 +1,30 @@
 <template>
   <div class="router">
-    <router-link class="link" to="/">Store</router-link>
-    <span>
-      <router-link class="link" to="Cart">Cart</router-link>
-    </span>
-    <router-link class="link" to="Login">Login</router-link>
-    <button class="link" @click.prevent="logOut">
-      <!-- ${USER } -->
-      Sign Out
+    <button class="buttonout" type="button">
+      <button type="button" class="buttonin"><router-link class="link" to="/">Store</router-link></button>
     </button>
+<<<<<<< Updated upstream
     <h2 class="displayLog" v-if="userInfo.user.loggedIn == true">User is IN</h2>
     <h2 class="displayLog" v-else>User is OUT</h2>
     <h2 class="displayLog">Logged in: {{ userInfo.user.email }}</h2>
+=======
+     
+     <button class="buttonout" type="button">
+      <button type="button" class="buttonin"><router-link class="link" to="Cart" >Cart</router-link></button>
+    </button>
+
+    <button class="buttonout" type="button">
+      <button type="button" class="buttonin"> <router-link class="link" to="Login">Login</router-link></button>
+    </button>
+
+    <button class="buttonout" type="button" v-if="userInfo.user.loggedIn == 'true'">
+      <button type="button" class="buttonin" @click.prevent="logOut" v-if="userInfo.user.loggedIn == 'true'">Sign Out</button>
+    </button>
+
+<!--     <h2 class="displayLog" v-if="userInfo.user.loggedIn == 'true'">User is IN</h2>
+    <h2 class="displayLog" v-else>User is OUT</h2> -->
+    <h2 class="displayLog" v-if="userInfo.user.loggedIn == 'true'">Logged in: {{ userInfo.user.email }}</h2>
+>>>>>>> Stashed changes
   </div>
 </template>
 
@@ -66,17 +79,68 @@ body,
   font-family: 'Raleway', sans-serif;
 }
 .link {
+  text-decoration: none; 
+  color: black; 
   margin-left: 10rem;
   margin: 2rem;
   font-size: 3rem;
 }
 
+.link:visited{
+ text-decoration: none; 
+ color: black; 
+}
+
+.button{
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
+}
+
 .router {
-  border: solid black 1px;
+  border: solid black 5px;
   border-radius: 10px;
+  padding: .5rem;
 }
 
 .displayLog {
   font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
 }
+
+
+.buttonin {
+  font-size: 2.5rem;
+  color: black;
+  border: solid 3px black;
+  padding: 10px;
+  background-color: white;
+  border-radius: 4rem;
+  transition: all 0.2s;
+}
+
+.buttonout {
+  font-size: 2.5rem;
+  margin: 2rem;
+  background-color: white;
+  border: solid 0.5px black;
+  border-radius: 4rem;
+  transition: all 0.2s;
+}
+
+.buttonin:hover {
+  background-color: white;
+  color: black;
+}
+
+.buttonout:hover {
+  border: solid 6px black;
+  padding: 10px;
+  transform: scale(1.05);
+  border: 1px solid rgba(0, 0, 0, 0);
+  margin: 1.36rem;
+}
+
 </style>

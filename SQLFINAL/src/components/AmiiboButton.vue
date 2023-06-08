@@ -29,7 +29,7 @@ body,
   background-color: red;
   color: white;
   border: solid 3px red;
-  padding: 10px;
+  padding: 1rem;
   border-radius: 4rem;
   transition: all 0.2s;
 }
@@ -54,9 +54,10 @@ body,
   transform: scale(1.05);
   border: 1px solid rgba(0, 0, 0, 0);
   margin: 1.36rem;
+
 }
 
 .buttondiv {
-  margin: 5rem;
+  margin: .25rem;
 }
 </style>

@@ -1,5 +1,7 @@
 <template>
-  <div class="individualAmiibo">
+  <div class="individualAmiibo"
+    data-aos="fade-up"
+     data-aos-duration="1000" >
     <h2 class="amiiboRegister">
       {{ name }}
     </h2>
@@ -19,12 +21,17 @@ import AmiiboButton from '../components/AmiiboButton.vue'
 import { shop } from '@/stores/shop'
 const store = shop()
 import AmiiboCard from '../components/AmiiboCard.vue'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 </script>
 
 <script>
 import { userInformation } from '@/stores/users'
 const userInfo = userInformation()
 export default {
+  mounted() {
+    AOS.init()
+  },
   data() {
     return {
       title: 'AmiiboCard'
@@ -72,6 +79,7 @@ body,
 
 .amiiboName {
   font-size: 1.5rem;
+
 }
 
 .amiiboSeries {
@@ -79,17 +87,28 @@ body,
   margin: 1rem;
 }
 
+.amiiboImage{
+  transition: all .25s;
+}
+
+.amiiboImage:hover{
+  transform: scale(1.13);
+  margin: 5px;
+  transition: all .25s;
+}
+
 .individualAmiibo:hover {
-  border: solid 1px rgb(57, 6, 6);
+border: red solid 5px;
+border-radius: 60px;
+transition: all .25s;
 }
 
 .individualAmiibo {
-  border: solid 1px rgb(26, 26, 26);
-  border-radius: 3px;
+  border: solid 5px rgb(26, 26, 26);
+  border-radius: 5px;
   width: 27.5%;
   text-align: center;
   margin: 1rem;
-  padding: 1rem;
   transition: all 0.25s;
   background-color: white;
 }

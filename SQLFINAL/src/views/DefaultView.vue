@@ -9,10 +9,15 @@ onMounted(() => {
 })
 </script>
 
+<script>
+export default{
+}
+</script>
+
 <template class="template">
   <HeadingTemplate></HeadingTemplate>
   <!--Replace amiibos with Amiibostore.amiibos1 to continue working on issue-->
-  <div id="amiibosContainer">
+  <div id="amiibosContainer" >
     <AmiiboCard
       v-for="amiibo in AmiiboStore.amiibos"
       :name="amiibo.name"
@@ -26,11 +31,12 @@ onMounted(() => {
   </div>
 </template>
 
-<style>
+<style lang="css">
 #amiibosContainer {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   flex-wrap: wrap;
 }
+
 </style>

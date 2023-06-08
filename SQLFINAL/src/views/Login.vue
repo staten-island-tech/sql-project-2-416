@@ -23,11 +23,23 @@ export default {
         email: this.email,
         password: this.password
       })
-      if (data.user.identities.length != 0) {
+      if (error) {
+        console.log(error)
+        alert("Please re-enter (or finish entering) your login credentials. If you do not have an account, please create one.")
+      } 
+      else if (userInfo.user.email == this.email) {
+      alert("You're . . . already logged in?")
+      }
+      else if(userInfo.user.loggedIn == 'true') {
+        alert("Someone else is logged in. Please log out of this account before you sign in!")
+      }
+      else {
+        console.log(data)
         userInfo.user.email = this.email
         userInfo.user.loggedIn = true
-      } else {
-        console.log('No')
+        this.email = ''
+        this.password = ''
+        console.log(userInfo.user)
       }
     }
   }
@@ -40,16 +52,18 @@ export default {
   <HeadingTemplate></HeadingTemplate>
   <div class="containerDiv">
     <form class="userheaders">
+      <div class="field">
       <label id="username" for="email">Email</label>
       <input id="emailInput" type="text" v-model="email" />
+      </div>
+      <div class="field" >
       <label id="password" for="password">Password</label>
-      <input id="passwordInput" type="text" v-model="password" />
-      <button id="login" type="submit" @click.prevent="getUsers">Login</button>
+      <input id="passwordInput" type="password" v-model="password" />
+      </div>
+      <button class="login" type="submit" @click.prevent="getUsers" >Login</button>
+      <router-link  class="login" id="loginClick" to="/SignUp" >Sign Up</router-link>
     </form>
-    <!--     <h2 class="loginClick" v-if="(this.userInfo.user = true)">TEST</h2> -->
-    <router-link id="login" class="loginClick" to="/SignUp">Sign Up</router-link>
   </div>
-  <!-- <h2 v-if=""></h2> -->
 </template>
 
 <style scoped>
@@ -65,10 +79,55 @@ body,
 }
 
 .containerDiv {
-  font-size: 4.5rem;
+  font-size: 7rem;
 }
 
-.loginClick {
+.userheaders{
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.field{
+display: flex;
+font-size: 3rem;
+margin: .5rem;
+}
+
+.login{
+  font-size: 3rem;
+  padding: 8rem;
+  border: black solid 3px;
+  background-color: white;
+  border-radius: 55px;
+  margin: 5px;
+  transition: all .6s;
+  text-decoration: none;  
+  color: black; 
+  justify-content: center;
+  padding: .8rem;
   font-size: 4rem;
 }
+
+.login:hover{
+  border-radius: 5px;
+  transition: all .5s;
+  transform: scale(1.02);
+  background-color: black;
+  color: white;
+}
+
+#loginClick{
+  margin-top: 20rem;
+  font-size: 2.2rem;
+}
+
+#loginClick:hover{
+  box-shadow: 10px 5px 5px ;
+}
+
+
+
 </style>
