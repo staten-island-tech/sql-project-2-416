@@ -31,17 +31,19 @@ export default {
   },
   methods: {
     async createUser(userEmail, userPassword) {
-      // const { data, error } = await supabase.auth.signUp({
-      //   email: this.email,
-      //   password: this.password
-      // })
-      const { data, error } = await supabase
+      const { data, error } = await supabase.from('shopping_cart').select().eq('email', userEmail)
+
+      const signUpData = await supabase.auth.signUp({
+        email: this.email,
+        password: this.password
+      })
+      await supabase
         .from('shopping_cart')
         .insert([{ email: this.email, amiibo: [], respectiveCount: [] }])
-      if (error) {
-        console.log(error)
+      if (signUpData.error) {
+        console.log(signUpData.error)
       } else {
-        console.log(data)
+        console.log(signUpData.data)
       }
     },
     samePassword() {

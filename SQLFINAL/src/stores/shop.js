@@ -6,6 +6,7 @@ const userInfo = userInformation()
 
 export const shop = defineStore('shop', () => {
   async function addToCart(cart, respectiveCount, itemToAdd) {
+    console.log(userInfo.user.loggedIn)
     if (userInfo.user.loggedIn == 'true') {
       if (cart.length == 0) {
         const { data, error } = await supabase // Updates the database
@@ -33,6 +34,7 @@ export const shop = defineStore('shop', () => {
             })
             .eq('email', userInfo.user.email)
         } else {
+          console.log('2a. no')
           cart.push(itemToAdd) // Adds the new item to the cart array
           userInfo.user.respectiveCount.push(1) // Adds an element, "1" to the count array
           const { data, error } = await supabase // Updates the database
