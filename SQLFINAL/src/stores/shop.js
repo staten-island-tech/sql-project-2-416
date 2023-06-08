@@ -5,6 +5,12 @@ import { userInformation } from '@/stores/users'
 const userInfo = userInformation()
 
 export const shop = defineStore('shop', () => {
+  async function addToCart1(itemToAdd) {if (userInfo.user.loggedIn == 'true') {
+    const { data, error} = await supabase.from('amiibo_cart').insert({amiibo_id: itemToAdd}).eq('email', userInfo.user.email)
+    console.log(`error: ${error}, data: ${data}`)
+  }}
+
+  
   async function addToCart(cart, respectiveCount, itemToAdd) {
     console.log(userInfo.user.loggedIn)
     if (userInfo.user.loggedIn == 'true') {
@@ -49,11 +55,12 @@ export const shop = defineStore('shop', () => {
       }
     } else if (userInfo.user.loggedIn == 'false' || undefined) {
       // Relocates to login page, also why doesn't "else" work?
+      //Else may only look for true / false. If something is true, then the else should be false. It does not look for undefined.
       location.replace(`${location.href}Login`)
     }
-  }
+  } 
+  return {addToCart, addToCart1 }
 
-  return { addToCart }
 })
 // ----------------------------
 // Vue version of inserting data into the cards
