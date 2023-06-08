@@ -21,12 +21,20 @@ export default {
 
 <template>
   <HeadingTemplate></HeadingTemplate>
+  <div id="cartContainer">
   <Cart
     v-for="item in userInfo.user.shoppingCart"
     :count="item.count"
     :price="item.price"
     :amiibo_id="item.amiibo_id"
   ></Cart>
+  </div>
 </template>
 
-<style lang="css" scoped></style>
+<style lang="css" scoped>
+#cartContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}</style>
