@@ -3,11 +3,6 @@
     <button class="buttonout" type="button">
       <button type="button" class="buttonin"><router-link class="link" to="/">Store</router-link></button>
     </button>
-<<<<<<< Updated upstream
-    <h2 class="displayLog" v-if="userInfo.user.loggedIn == true">User is IN</h2>
-    <h2 class="displayLog" v-else>User is OUT</h2>
-    <h2 class="displayLog">Logged in: {{ userInfo.user.email }}</h2>
-=======
      
      <button class="buttonout" type="button">
       <button type="button" class="buttonin"><router-link class="link" to="Cart" >Cart</router-link></button>
@@ -24,7 +19,6 @@
 <!--     <h2 class="displayLog" v-if="userInfo.user.loggedIn == 'true'">User is IN</h2>
     <h2 class="displayLog" v-else>User is OUT</h2> -->
     <h2 class="displayLog" v-if="userInfo.user.loggedIn == 'true'">Logged in: {{ userInfo.user.email }}</h2>
->>>>>>> Stashed changes
   </div>
 </template>
 
