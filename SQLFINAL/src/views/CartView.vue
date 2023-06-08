@@ -21,6 +21,12 @@ export default {
 
 <template>
   <HeadingTemplate></HeadingTemplate>
+  <Cart
+    v-for="item in userInfo.user.shoppingCart"
+    :count="item.count"
+    :price="item.price"
+    :amiibo_id="item.amiibo_id"
+  ></Cart>
 </template>
 
 <style lang="css" scoped></style>

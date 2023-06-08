@@ -28,7 +28,6 @@ export default {
   data() {
     return {
       title: 'AmiiboCard'
-      // email: userInfo.user.email
     }
   },
   props: {

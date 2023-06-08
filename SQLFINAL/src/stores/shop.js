@@ -12,7 +12,6 @@ export const shop = defineStore('shop', () => {
         .select()
         .eq('email', userInfo.user.email)
         .eq('amiibo_id', id)
-      console.log(checkIfSame.data)
       if (checkIfSame.data.length > 0) {
         await supabase
           .from('amiibo_cart')
@@ -26,7 +25,6 @@ export const shop = defineStore('shop', () => {
           .from('amiibo_cart')
           .insert({ email: userInfo.user.email, amiibo_id: id, price: price, count: 1 })
           .select()
-        console.log(data)
       }
     } else {
       location.replace(`${location.href}Login`)
@@ -47,7 +45,6 @@ export const useAmiiboStore = defineStore('AmiiboStore', {
       // Gets all amiibos
       const { data } = await supabase.from('amiibo').select() // Gets array and puts it into data
       this.amiibos = data //data is put into this.amiibos1
-      // console.log(this.amiibos)
     }
   }
 })

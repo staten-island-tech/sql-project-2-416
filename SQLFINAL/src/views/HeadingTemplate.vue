@@ -30,6 +30,10 @@ export default {
       userInfo.user.loggedIn = true
       userInfo.user.email = data.session.user.email
     }
+
+    const userShoppingCart = await supabase.from('amiibo_cart').select()
+    userInfo.user.shoppingCart = userShoppingCart.data
+    console.log(userInfo.user.shoppingCart)
   },
   methods: {
     async logOut() {

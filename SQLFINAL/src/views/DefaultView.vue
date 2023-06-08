@@ -1,9 +1,12 @@
 <script setup>
+import { onMounted } from 'vue'
 import HeadingTemplate from './HeadingTemplate.vue'
 import AmiiboCard from '../components/AmiiboCard.vue'
 import { useAmiiboStore } from '../stores/shop.js'
 const AmiiboStore = useAmiiboStore() //AmiiboStore is defined with the useAmiiboStore const
-AmiiboStore.fill()
+onMounted(() => {
+  AmiiboStore.fill()
+})
 </script>
 
 <template class="template">
