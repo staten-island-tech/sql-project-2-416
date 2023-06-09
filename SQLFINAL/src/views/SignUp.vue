@@ -57,7 +57,6 @@ export default {
   methods: {
     async createUser() {
       const emailExists = await supabase.from('shopping_cart').select().eq('email', this.email)
-      console.log(emailExists)
       if (emailExists.data.length > 0) {
         alert('Sorry, this email is already in use or is not real.')
       } else {
