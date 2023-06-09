@@ -16,12 +16,18 @@ export default {
     HeadingTemplate,
     Cart
   },
-  methods: {}
+  methods: {
+    purchase: function () {
+
+    }
+  }
 }
 </script>
 
 <template>
   <HeadingTemplate></HeadingTemplate>
+  <button @click="purchase">Purchase (Can only be made after reactive is implemented)</button>
+  <div id="cartContainer">
   <Cart
     v-for="item in userInfo.realShoppingCart"
     :name="item.amiibo.name"
@@ -30,6 +36,13 @@ export default {
     :price="item.amiibo.price"
     :character="item.amiibo.character"
   ></Cart>
+  </div>
 </template>
 
-<style lang="css" scoped></style>
+<style lang="css" scoped>
+#cartContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}</style>

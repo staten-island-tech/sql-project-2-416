@@ -1,8 +1,5 @@
 <template>
-  <!-- <div>{{ realShoppingCart[index] }}</div> -->
-  <br />
-  <hr />
-  <div class="individualAmiibo">
+  <div class="individualAmiibo" data-aos="fade-up" data-aos-duration="1000">
     <h2 class="amiiboRegister">
       {{ name }}
     </h2>
@@ -24,11 +21,15 @@ const realShoppingCart = userInfo.realShoppingCart
 import { supabase } from '../lib/supabaseClient'
 import { useAmiiboStore } from '../stores/shop.js'
 const AmiiboStore = useAmiiboStore()
-
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 import { userInformation } from '@/stores/users'
 const userInfo = userInformation()
 
 export default {
+  mounted() {
+    AOS.init()
+  },
   name: 'Cart',
   props: {
     character: String,
@@ -41,4 +42,60 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="css" scoped>
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500;700&display=swap');
+
+html,
+body,
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 62.5%;
+  font-family: 'Raleway', sans-serif;
+}
+.amiiboRegister {
+  font-size: 2rem;
+}
+
+#amiibosContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.amiiboName {
+  font-size: 1.5rem;
+}
+
+.amiiboSeries {
+  font-size: 3rem;
+  margin: 1rem;
+}
+
+.amiiboImage {
+  transition: all 0.25s;
+}
+
+.amiiboImage:hover {
+  transform: scale(1.13);
+  margin: 5px;
+  transition: all 0.25s;
+}
+
+.individualAmiibo:hover {
+  border: red solid 5px;
+  border-radius: 60px;
+  transition: all 0.25s;
+}
+
+.individualAmiibo {
+  border: solid 5px rgb(26, 26, 26);
+  border-radius: 5px;
+  width: 27.5%;
+  text-align: center;
+  margin: 1rem;
+  transition: all 0.25s;
+  background-color: white;
+}
+</style>
