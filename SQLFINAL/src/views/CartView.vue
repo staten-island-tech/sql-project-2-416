@@ -17,11 +17,6 @@ export default {
   },
   methods: {
     async totalpurchase() {
-      const { error } = await supabase
-        .from('amiibo_cart')
-        .delete()
-        .eq('email', userInfo.user.email)
-        .eq('amiibo_id', userInfo.realShoppingCart.amiibo_id)
     }
   }
 }
@@ -29,7 +24,8 @@ export default {
 
 <template>
   <HeadingTemplate></HeadingTemplate>
-  <button type="button" class="totalPurchase" @click="totalpurchase">Purchase</button>
+  <button type="button" class="totalPurchase" v-if="userInfo.totalCount > 0" @click="totalpurchase">Purchase (${{userInfo.totalCount * 30}})</button>
+  <h2 class="pleaseAdd" v-else>Please add something to your cart</h2>
   <div id="cartContainer">
     <Cart
       v-for="item in userInfo.realShoppingCart"
@@ -46,6 +42,15 @@ export default {
 </template>
 
 <style lang="css" scoped>
+html,
+body,
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 62.5%;
+  font-family: 'Raleway', sans-serif;
+}
+
 #cartContainer {
   display: flex;
   flex-direction: row;
@@ -55,6 +60,10 @@ export default {
 
 
 .totalPurchase {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
   font-size: 3rem;
   padding: 8rem;
   border: black solid 3px;
@@ -67,6 +76,7 @@ export default {
   justify-content: center;
   padding: 0.8rem;
   font-size: 4rem;
+  text-align: center;
 }
 
 .totalPurchase:hover {
@@ -78,4 +88,10 @@ export default {
   color: white;
 }
 
+
+.pleaseAdd{
+  display: flex;
+  font-size: 3rem;
+  margin: 0.5rem;
+}
 </style>
