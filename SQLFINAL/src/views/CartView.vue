@@ -15,12 +15,17 @@ export default {
     HeadingTemplate,
     Cart
   },
-  methods: {}
+  methods: {
+    purchase: function () {
+
+    }
+  }
 }
 </script>
 
 <template>
   <HeadingTemplate></HeadingTemplate>
+  <button @click="purchase">Purchase (Can only be made after reactive is implemented)</button>
   <div id="cartContainer">
   <Cart
     v-for="item in userInfo.user.shoppingCart"

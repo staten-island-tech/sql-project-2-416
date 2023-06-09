@@ -62,7 +62,7 @@ export default {
       <input id="passwordInput" type="password" v-model="password" />
       </div>
       <button class="login" type="submit" @click.prevent="getUsers" >Login</button>
-      <router-link  class="login" id="loginClick" to="/SignUp" >Sign Up</router-link>
+      <router-link  class="login" id="loginClick" to="SignUp" >Sign Up</router-link>
     </form>
   </div>
 </template>

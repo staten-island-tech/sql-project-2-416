@@ -5,7 +5,7 @@ export const userInformation = defineStore('settings', {
     return {
       user: {
         email: null,
-        loggedIn: null
+        loggedIn: false
       },
       shoppingCart: []
     }

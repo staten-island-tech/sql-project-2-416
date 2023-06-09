@@ -6,9 +6,9 @@
       </button>
     </button>
 
-    <button class="buttonout" type="button">
-      <button type="button" class="buttonin">
-        <router-link class="link" to="Cart">Cart</router-link>
+    <button class="buttonout" type="button" v-if="userInfo.user.loggedIn">
+      <button type="button" class="buttonin" v-if="userInfo.user.loggedIn">
+        <router-link class="link" to="Cart" >Cart</router-link>
       </button>
     </button>
 
