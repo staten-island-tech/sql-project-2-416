@@ -8,7 +8,12 @@
     <h3 class="amiiboSeries">$ {{ price }}.00</h3>
     <h3 class="amiiboName">{{ character }}</h3>
     <button class="deleteButton" @click="deleteFromStore">Delete</button>
-    <!-- <h3>Quantity: {{ count }}</h3> -->
+    <h3 class="amiiboSeries">Quantity</h3>
+    <div class="alterQuantity">
+      <!-- <button class="amiiboSeries" @click="increase">+</button> -->
+      <h3 class="amiiboSeries">{{ count }}</h3>
+      <!-- <button class="amiiboSeries">-</button> -->
+    </div>
   </div>
 </template>
 
@@ -39,7 +44,8 @@ export default {
     image: String,
     name: String,
     price: Number,
-    amiibo_id: Number
+    amiibo_id: Number,
+    count: Number
   },
   methods: {
     async deleteFromStore() {
@@ -49,6 +55,15 @@ export default {
         .eq('email', userInfo.user.email)
         .eq('amiibo_id', this.amiibo_id)
       userInfo.realShoppingCart.splice(this.index, 1)
+    },
+    async increase() {
+      const { data, error } = await supabase
+        .from('amiibo_cart')
+        .update({ count: this.count + 1 })
+        .eq('email', userInfo.user.email)
+        .eq('amiibo_id', this.amiibo_id)
+      console.log(userInfo.realShoppingCart[this.index].count)
+      userInfo.realShoppingCart[this.index].count += 1
     }
   }
 }
@@ -113,5 +128,9 @@ body,
 
 .deleteButton {
   font-size: 50px;
+}
+
+.alterQuantity {
+  display: inline-flex;
 }
 </style>

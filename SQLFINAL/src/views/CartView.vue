@@ -34,6 +34,7 @@ export default {
       :price="item.amiibo.price"
       :character="item.amiibo.character"
       :amiibo_id="item.amiibo_id"
+      :count="item.count"
     ></Cart>
   </div>
 </template>

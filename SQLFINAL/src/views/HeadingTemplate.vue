@@ -41,18 +41,23 @@ export default {
       userInfo.user.email = data.session.user.email
     }
     const userShoppingCart = await supabase.from('amiibo_cart').select()
-    userInfo.user.shoppingCart = userShoppingCart.data
-    console.log(userInfo.user.shoppingCart)
 
     const userCart = await supabase
       .from('amiibo_cart')
       .select(`amiibo_id, amiibo(character, gameSeries, image, name, price)`)
     userInfo.realShoppingCart = userCart.data
-    console.log(userInfo.realShoppingCart)
 
-    // for (let i = 0; i < userShoppingCart.length; i++) {
-    //   userInfo.realShoppingCart[i].push(userInfo.user.shoppingCart[i].count)
-    // }
+    for (let i = 0; i < userShoppingCart.data.length; i++) {
+      console.log(userShoppingCart.data[i].count)
+      // Object.defineProperty(userInfo.realShoppingCart[i], 'count', {      Why doesn't this work?????
+      //   test: userShoppingCart.data[i].count
+      // })
+      Object.defineProperties(userInfo.realShoppingCart[i], {
+        count: { value: userShoppingCart.data[i].count }
+      })
+    }
+
+    console.log(userInfo.realShoppingCart)
   },
   methods: {
     async logOut() {
