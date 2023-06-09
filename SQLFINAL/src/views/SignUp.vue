@@ -14,7 +14,7 @@
       <input id="confirm" type="password" v-model="confirm" />
     </div>
     <div class="field">
-      <button
+      <!-- <button
         type="button"
         class="create"
         v-if="samePassword() && this.password != ''"
@@ -31,7 +31,7 @@
         title="Please fill out all the fields above"
       >
         Create
-      </button>
+      </button> -->
     </div>
   </form>
   <div id="result"></div>
@@ -55,7 +55,7 @@ export default {
     HeadingTemplate
   },
   methods: {
-    async createUser() {
+/*     async createUser() {
       const emailExists = await supabase.from('shopping_cart').select().eq('email', this.email)
       if (emailExists.data.length > 0) {
         alert('Sorry, this email is already in use or is not real.')
@@ -79,7 +79,7 @@ export default {
     samePassword() {
       return this.password == this.confirm
     }
-  }
+  } */
 }}
 </script>
 
