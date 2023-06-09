@@ -10,9 +10,7 @@
     <button class="deleteButton" @click="deleteFromStore">Delete</button>
     <h3 class="amiiboSeries">Quantity</h3>
     <div class="alterQuantity">
-      <!-- <button class="amiiboSeries" @click="increase">+</button> -->
       <h3 class="amiiboSeries">{{ count }}</h3>
-      <!-- <button class="amiiboSeries">-</button> -->
     </div>
   </div>
 </template>
@@ -50,22 +48,14 @@ export default {
   methods: {
     async deleteFromStore() {
       userInfo.totalCount--
-    //  console.log(userInfo.totalCount)
+      //  console.log(userInfo.totalCount)
       const { error } = await supabase
         .from('amiibo_cart')
         .delete()
         .eq('email', userInfo.user.email)
         .eq('amiibo_id', this.amiibo_id)
       userInfo.realShoppingCart.splice(this.index, 1)
-    },
-    async increase() {
-      const { data, error } = await supabase
-        .from('amiibo_cart')
-        .update({ count: this.count + 1 })
-        .eq('email', userInfo.user.email)
-        .eq('amiibo_id', this.amiibo_id)
-    //  console.log(userInfo.realShoppingCart[this.index].count)
-      userInfo.realShoppingCart[this.index].count += 1
+      userInfo.totalCount -= this.count
     }
   }
 }
@@ -136,7 +126,7 @@ body,
   display: inline-flex;
 }
 
-.deleteButton{
+.deleteButton {
   background-color: white;
   border: black;
   border-radius: 5px;

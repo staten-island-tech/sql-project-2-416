@@ -26,6 +26,7 @@ export const shop = defineStore('shop', () => {
           .insert({ email: userInfo.user.email, amiibo_id: id, price: price, count: 1 })
           .select()
       }
+      userInfo.totalCount += 1
     } else {
       location.replace(`${location.href}Login`)
     }
