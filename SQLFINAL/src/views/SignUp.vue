@@ -81,7 +81,7 @@ export default {
       return this.password == this.confirm
     }
   }
-}
+}}
 </script>
 
 <style scoped>
