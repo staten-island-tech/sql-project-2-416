@@ -35,7 +35,7 @@ export default {
   <button type="button" class="totalPurchase" v-if="userInfo.totalCount > 0" @click="totalpurchase">
     Purchase (${{ userInfo.totalCount * 30 }})
   </button>
-  <h2 class="pleaseAdd" v-else>Please add something to your cart</h2>
+  <h1 class="pleaseAdd" v-else>Please add something to your cart</h1>
   <div id="cartContainer">
     <Cart
       v-for="item in userInfo.realShoppingCart"

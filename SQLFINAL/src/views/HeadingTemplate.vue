@@ -21,9 +21,9 @@
       </button>
     </button>
 
-    <h2 class="displayLog" v-if="userInfo.user.loggedIn == true">
+    <h1 class="displayLog" v-if="userInfo.user.loggedIn == true">
       Logged in: {{ userInfo.user.email }}
-    </h2>
+    </h1>
   </div>
 </template>
 
