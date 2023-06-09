@@ -16,14 +16,20 @@ export default {
     Cart
   },
   methods: {
-    purchase: function () {}
+    async totalpurchase() {
+      const { error } = await supabase
+        .from('amiibo_cart')
+        .delete()
+        .eq('email', userInfo.user.email)
+        .eq('amiibo_id', userInfo.realShoppingCart.amiibo_id)
+    }
   }
 }
 </script>
 
 <template>
   <HeadingTemplate></HeadingTemplate>
-  <button @click="purchase">Purchase (Can only be made after reactive is implemented)</button>
+  <button type="button" class="totalPurchase" @click="totalpurchase">Purchase</button>
   <div id="cartContainer">
     <Cart
       v-for="item in userInfo.realShoppingCart"
@@ -35,7 +41,7 @@ export default {
       :character="item.amiibo.character"
       :amiibo_id="item.amiibo_id"
       :count="item.count"
-    ></Cart>
+    />
   </div>
 </template>
 
@@ -46,4 +52,30 @@ export default {
   justify-content: space-evenly;
   flex-wrap: wrap;
 }
+
+
+.totalPurchase {
+  font-size: 3rem;
+  padding: 8rem;
+  border: black solid 3px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 55px;
+  margin: 5px;
+  transition: all 0.6s;
+  text-decoration: none;
+  color: black;
+  justify-content: center;
+  padding: 0.8rem;
+  font-size: 4rem;
+}
+
+.totalPurchase:hover {
+  border-radius: 5px;
+  transition: all 0.5s;
+  transform: scale(1.02);
+  background-color: rgb(7, 20, 8);
+  box-shadow: 5px 2.5px 2.5px;
+  color: white;
+}
+
 </style>

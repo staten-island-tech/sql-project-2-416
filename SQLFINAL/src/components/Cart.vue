@@ -49,6 +49,7 @@ export default {
   },
   methods: {
     async deleteFromStore() {
+      userInfo.totalCount - 1
       const { error } = await supabase
         .from('amiibo_cart')
         .delete()

@@ -49,9 +49,8 @@ export default {
 
     for (let i = 0; i < userShoppingCart.data.length; i++) {
       console.log(userShoppingCart.data[i].count)
-      // Object.defineProperty(userInfo.realShoppingCart[i], 'count', {      Why doesn't this work?????
-      //   test: userShoppingCart.data[i].count
-      // })
+      userInfo.totalCount++
+      console.log(userInfo.totalCount)
       Object.defineProperties(userInfo.realShoppingCart[i], {
         count: { value: userShoppingCart.data[i].count }
       })

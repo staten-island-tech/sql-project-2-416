@@ -50,6 +50,8 @@ export default {
     getImage: function () {
       return this.image
     }
+  },
+  methods: {
   }
 }
 </script>
