@@ -6,7 +6,7 @@
       {{ name }}
     </h1>
     <img class="amiiboImage" :src="getImage" width="200" alt= "Amiibo figure"   />
-    <h3 class="amiiboSeries">{{ gameSeries }}</h3>
+    <h2 class="amiiboSeries">{{ gameSeries }}</h2>
     <h3 class="amiiboSeries">$ {{ price }}.00</h3>
     <h3 class="amiiboName">{{ character }}</h3>
     <!-- <AmiiboButton

@@ -35,7 +35,6 @@
     </div>
   </form>
   <div id="result"></div>
-  <h1 id="duplicateEmail" ref="duplicateEmail"></h1>
 </template>
 
 <script>

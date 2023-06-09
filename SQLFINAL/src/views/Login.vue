@@ -49,22 +49,21 @@ export default {
 
 <template>
   <HeadingTemplate></HeadingTemplate>
-  <header>Top of the Login Page</header>
+  <header></header>
   <div class="containerDiv">
     <form class="userheaders">
       <div class="field">
-        <label id="username" for="email">Email</label>
-        <input id="emailInput" type="text" v-model="email" />
+        <label id="username" for="emailInput">Email         <input id="emailInput" type="text" v-model="email" /></label>
       </div>
       <div class="field">
-        <label id="password" for="password">Password</label>
-        <input id="passwordInput" type="password" v-model="password" />
+        <label id="password" for="passwordInput">Password         <input id="passwordInput" type="password" v-model="password"  /></label>
+
       </div>
       <button class="login" type="submit" @click.prevent="getUsers">Login</button>
       <router-link class="login" id="loginClick" to="SignUp">Sign Up</router-link>
     </form>
   </div>
-  <footer>Bottom of the Login page</footer>
+  <footer></footer>
 </template>
 
 <style scoped>
