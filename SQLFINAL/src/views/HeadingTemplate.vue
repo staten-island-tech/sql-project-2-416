@@ -36,8 +36,6 @@ export default {
   name: 'HeadingTemplate',
   async mounted() {
     const { data, error } = await supabase.auth.getSession()
-    console.log(data)
-    console.log(error)
     if (data.session) {
       userInfo.user.loggedIn = true
       userInfo.user.email = data.session.user.email
@@ -45,15 +43,19 @@ export default {
 
     const userShoppingCart = await supabase.from('amiibo_cart').select()
     userInfo.user.shoppingCart = userShoppingCart.data
-    console.log(userInfo.user.shoppingCart)
+    console.log('userShoppingCart')
+    console.log(userShoppingCart)
+
+    const userCart = await supabase
+      .from('amiibo_cart')
+      .select(`amiibo_id, amiibo(character, gameSeries, image, name, price)`)
+    userInfo.realShoppingCart = userCart.data
   },
   methods: {
     async logOut() {
       const { error } = await supabase.auth.signOut()
       if (error) {
-        console.log(error)
       } else {
-        console.log('Success')
         userInfo.user.email = null
         userInfo.user.loggedIn = false
       }

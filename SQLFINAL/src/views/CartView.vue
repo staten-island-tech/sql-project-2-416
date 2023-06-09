@@ -9,6 +9,7 @@ const userInfo = userInformation()
 <script>
 import { userInformation } from '@/stores/users'
 const userInfo = userInformation()
+console.log(userInfo.realShoppingCart)
 
 export default {
   components: {
@@ -22,10 +23,12 @@ export default {
 <template>
   <HeadingTemplate></HeadingTemplate>
   <Cart
-    v-for="item in userInfo.user.shoppingCart"
-    :count="item.count"
-    :price="item.price"
-    :amiibo_id="item.amiibo_id"
+    v-for="item in userInfo.realShoppingCart"
+    :name="item.amiibo.name"
+    :image="item.amiibo.image"
+    :gameSeries="item.amiibo.gameSeries"
+    :price="item.amiibo.price"
+    :character="item.amiibo.character"
   ></Cart>
 </template>
 

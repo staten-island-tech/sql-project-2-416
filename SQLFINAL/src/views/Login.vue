@@ -34,12 +34,10 @@ export default {
         alert("Someone else is logged in. Please log out of this account before you sign in!")
       }
       else {
-        console.log(data)
         userInfo.user.email = this.email
         userInfo.user.loggedIn = true
         this.email = ''
         this.password = ''
-        console.log(userInfo.user)
       }
     }
   }

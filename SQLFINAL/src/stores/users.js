@@ -7,7 +7,8 @@ export const userInformation = defineStore('settings', {
         email: null,
         loggedIn: null
       },
-      shoppingCart: []
+      shoppingCart: [],
+      realShoppingCart: []
     }
   }
 })
