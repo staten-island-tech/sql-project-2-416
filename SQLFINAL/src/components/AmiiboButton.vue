@@ -1,7 +1,7 @@
 <template>
   <div class="buttondiv">
     <button class="buttonout" type="button">
-      <button type="button" class="buttonin" @click="      userInfo.totalCount++">Add to Cart</button>
+      <button type="button" class="buttonin">Add to Cart</button>
     </button>
   </div>
 </template>
@@ -56,10 +56,9 @@ body,
   transform: scale(1.05);
   border: 1px solid rgba(0, 0, 0, 0);
   margin: 1.36rem;
-
 }
 
 .buttondiv {
-  margin: .25rem;
+  margin: 0.25rem;
 }
 </style>
