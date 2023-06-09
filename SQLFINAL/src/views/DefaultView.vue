@@ -17,6 +17,7 @@ export default{
 <template class="template">
   <HeadingTemplate></HeadingTemplate>
   <!--Replace amiibos with Amiibostore.amiibos1 to continue working on issue-->
+  <header></header>
   <div id="amiibosContainer" >
     <AmiiboCard
       v-for="amiibo in AmiiboStore.amiibos"
@@ -29,6 +30,7 @@ export default{
       :id="amiibo.id"
     />
   </div>
+  <footer></footer>
 </template>
 
 <style lang="css">

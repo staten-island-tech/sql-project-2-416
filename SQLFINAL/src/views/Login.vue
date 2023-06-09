@@ -49,6 +49,7 @@ export default {
 
 <template>
   <HeadingTemplate></HeadingTemplate>
+  <header>Top of the Login Page</header>
   <div class="containerDiv">
     <form class="userheaders">
       <div class="field">
@@ -63,6 +64,7 @@ export default {
       <router-link class="login" id="loginClick" to="SignUp">Sign Up</router-link>
     </form>
   </div>
+  <footer>Bottom of the Login page</footer>
 </template>
 
 <style scoped>

@@ -31,6 +31,7 @@ export default {
 
 <template>
   <HeadingTemplate></HeadingTemplate>
+  <header></header>
   <button type="button" class="totalPurchase" v-if="userInfo.totalCount > 0" @click="totalpurchase">
     Purchase (${{ userInfo.totalCount * 30 }})
   </button>
@@ -48,6 +49,7 @@ export default {
       :count="item.count"
     />
   </div>
+  <footer></footer>
 </template>
 
 <style lang="css" scoped>
