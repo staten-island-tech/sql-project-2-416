@@ -46,6 +46,8 @@ export default {
     character: String,
     amiiboSeries: String
   },
+  methods: {
+  },
   computed: {
     getImage: function () {
       return this.image

@@ -7,6 +7,7 @@ const userInfo = userInformation()
 export const shop = defineStore('shop', () => {
   async function addToCart(id, price) {
     if (userInfo.user.loggedIn == true) {
+          userInfo.totalCount++
       const checkIfSame = await supabase
         .from('amiibo_cart')
         .select()
@@ -32,7 +33,6 @@ export const shop = defineStore('shop', () => {
         .select(`amiibo_id, amiibo(character, gameSeries, image, name, price)`)
       userInfo.realShoppingCart = userCart.data
       for (let i = 0; i < userShoppingCart.data.length; i++) {
-        userInfo.totalCount += 1
         Object.defineProperties(userInfo.realShoppingCart[i], {
           count: { value: userShoppingCart.data[i].count }
         })

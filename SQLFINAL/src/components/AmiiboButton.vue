@@ -12,7 +12,7 @@ const userInfo = userInformation()
 export default {
   setup() {
     return {}
-  }
+    }
 }
 </script>
 
