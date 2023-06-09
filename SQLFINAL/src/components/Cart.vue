@@ -133,4 +133,20 @@ body,
 .alterQuantity {
   display: inline-flex;
 }
+
+.deleteButton{
+  background-color: white;
+  border: black;
+  border-radius: 5px;
+  padding: 5px;
+  transition: all 0.25s;
+}
+
+.deleteButton:hover {
+  transform: scale(1.08);
+  transition: all 0.25s;
+  background-color: red;
+  color: white;
+  border: red;
+}
 </style>

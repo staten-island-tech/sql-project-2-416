@@ -14,7 +14,7 @@
       <input id="confirm" type="password" v-model="confirm" />
     </div>
     <div class="field">
-      <!-- <button
+       <button
         type="button"
         class="create"
         v-if="samePassword() && this.password != ''"
@@ -31,7 +31,7 @@
         title="Please fill out all the fields above"
       >
         Create
-      </button> -->
+      </button> 
     </div>
   </form>
   <div id="result"></div>
@@ -55,19 +55,7 @@ export default {
     HeadingTemplate
   },
   methods: {
-<<<<<<< HEAD
-/*     async createUser() {
-      const emailExists = await supabase.from('shopping_cart').select().eq('email', this.email)
-      if (emailExists.data.length > 0) {
-        alert('Sorry, this email is already in use or is not real.')
-      } else {
-        if (signUpData.error) {
-          console.log(signUpData.error)
-          alert(
-            'Please make sure you are entering a real email and that your password is over 6 characters.'
-          )
-=======
-    async createUser() {
+     async createUser() {
       const signUpData = await supabase.auth.signUp({
         email: this.email,
         password: this.password
@@ -76,7 +64,6 @@ export default {
       try {
         if (signUpData.data.user.identities.length == 0) {
           alert('Sorry, this email is already in use or is not real.')
->>>>>>> backupdev
         } else {
           if (signUpData.error) {
             console.log(signUpData.error)
@@ -91,19 +78,16 @@ export default {
           }
         }
       } catch (error) {
-        alert('Password needs to be at least 6 characters')
+        if (error.status = 422) {
+          alert('Please make sure you are entering a real email and that your password is over 6 characters.')
+        }
       }
-    },
+    }, 
     samePassword() {
       return this.password == this.confirm
     }
-<<<<<<< HEAD
-  } */
-}}
-=======
   }
 }
->>>>>>> backupdev
 </script>
 
 <style scoped>
