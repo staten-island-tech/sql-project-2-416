@@ -1,12 +1,14 @@
 <template>
   <div class="buttondiv">
     <button class="buttonout" type="button">
-      <button type="button" class="buttonin">Add to Cart</button>
+      <button type="button" class="buttonin" @click="      userInfo.totalCount++">Add to Cart</button>
     </button>
   </div>
 </template>
 
 <script>
+import { userInformation } from '@/stores/users'
+const userInfo = userInformation()
 export default {
   setup() {
     return {}
