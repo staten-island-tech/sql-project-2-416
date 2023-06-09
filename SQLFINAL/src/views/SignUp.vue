@@ -2,7 +2,7 @@
   <HeadingTemplate></HeadingTemplate>
   <form class="sign">
     <div class="field">
-      <label for="email">Username</label>
+      <label for="email">Email</label>
       <input id="email" type="text" v-model="email" />
     </div>
     <div class="field">
