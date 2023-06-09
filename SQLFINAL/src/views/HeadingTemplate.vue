@@ -46,7 +46,6 @@ export default {
       .from('amiibo_cart')
       .select(`amiibo_id, amiibo(character, gameSeries, image, name, price)`)
     userInfo.realShoppingCart = userCart.data
-      if (userInfo.user.loggedIn = true) {
       for (let i = 0; i < userShoppingCart.data.length; i++) {
       userInfo.totalCount++
       console.log(userInfo.totalCount)
@@ -55,7 +54,7 @@ export default {
         count: { value: userShoppingCart.data[i].count }
       })
     }
-}
+
     console.log(userInfo.realShoppingCart)
   },
   methods: {
