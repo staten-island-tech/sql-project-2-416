@@ -7,6 +7,7 @@
     <h3 class="amiiboSeries">{{ gameSeries }}</h3>
     <h3 class="amiiboSeries">$ {{ price }}.00</h3>
     <h3 class="amiiboName">{{ character }}</h3>
+    <button class="deleteButton" @click="deleteFromStore">Delete</button>
     <!-- <h3>Quantity: {{ count }}</h3> -->
   </div>
 </template>
@@ -32,13 +33,24 @@ export default {
   },
   name: 'Cart',
   props: {
+    index: Number,
     character: String,
     gameSeries: String,
     image: String,
     name: String,
-    price: Number
+    price: Number,
+    amiibo_id: Number
   },
-  async mounted() {}
+  methods: {
+    async deleteFromStore() {
+      const { error } = await supabase
+        .from('amiibo_cart')
+        .delete()
+        .eq('email', userInfo.user.email)
+        .eq('amiibo_id', this.amiibo_id)
+      userInfo.realShoppingCart.splice(this.index, 1)
+    }
+  }
 }
 </script>
 
@@ -97,5 +109,9 @@ body,
   margin: 1rem;
   transition: all 0.25s;
   background-color: white;
+}
+
+.deleteButton {
+  font-size: 50px;
 }
 </style>

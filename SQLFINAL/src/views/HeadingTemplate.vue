@@ -8,10 +8,9 @@
 
     <button class="buttonout" type="button" v-if="userInfo.user.loggedIn">
       <button type="button" class="buttonin" v-if="userInfo.user.loggedIn">
-        <router-link class="link" to="Cart" >Cart</router-link>
+        <router-link class="link" to="Cart">Cart</router-link>
       </button>
     </button>
-
 
     <button class="buttonout" type="button">
       <button type="button" class="buttonin" @click.prevent="logOut" v-if="userInfo.user.loggedIn">
@@ -43,13 +42,17 @@ export default {
     }
     const userShoppingCart = await supabase.from('amiibo_cart').select()
     userInfo.user.shoppingCart = userShoppingCart.data
-    console.log('userShoppingCart')
-    console.log(userShoppingCart)
+    console.log(userInfo.user.shoppingCart)
 
     const userCart = await supabase
       .from('amiibo_cart')
       .select(`amiibo_id, amiibo(character, gameSeries, image, name, price)`)
     userInfo.realShoppingCart = userCart.data
+    console.log(userInfo.realShoppingCart)
+
+    // for (let i = 0; i < userShoppingCart.length; i++) {
+    //   userInfo.realShoppingCart[i].push(userInfo.user.shoppingCart[i].count)
+    // }
   },
   methods: {
     async logOut() {

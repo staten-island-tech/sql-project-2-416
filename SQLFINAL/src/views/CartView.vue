@@ -9,7 +9,6 @@ const userInfo = userInformation()
 <script>
 import { userInformation } from '@/stores/users'
 const userInfo = userInformation()
-console.log(userInfo.realShoppingCart)
 
 export default {
   components: {
@@ -17,9 +16,7 @@ export default {
     Cart
   },
   methods: {
-    purchase: function () {
-
-    }
+    purchase: function () {}
   }
 }
 </script>
@@ -28,14 +25,16 @@ export default {
   <HeadingTemplate></HeadingTemplate>
   <button @click="purchase">Purchase (Can only be made after reactive is implemented)</button>
   <div id="cartContainer">
-  <Cart
-    v-for="item in userInfo.realShoppingCart"
-    :name="item.amiibo.name"
-    :image="item.amiibo.image"
-    :gameSeries="item.amiibo.gameSeries"
-    :price="item.amiibo.price"
-    :character="item.amiibo.character"
-  ></Cart>
+    <Cart
+      v-for="item in userInfo.realShoppingCart"
+      :index="userInfo.realShoppingCart.indexOf(item)"
+      :name="item.amiibo.name"
+      :image="item.amiibo.image"
+      :gameSeries="item.amiibo.gameSeries"
+      :price="item.amiibo.price"
+      :character="item.amiibo.character"
+      :amiibo_id="item.amiibo_id"
+    ></Cart>
   </div>
 </template>
 
@@ -45,4 +44,5 @@ export default {
   flex-direction: row;
   justify-content: space-evenly;
   flex-wrap: wrap;
-}</style>
+}
+</style>
