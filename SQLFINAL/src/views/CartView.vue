@@ -17,6 +17,13 @@ export default {
   },
   methods: {
     async totalpurchase() {
+      const { error } = await supabase
+      .from('amiibo_cart')
+        .delete()
+        .eq('email', userInfo.user.email)
+        .neq('id', 0)
+        userInfo.totalCount = 0
+        userInfo.realShoppingCart = []
     }
   }
 }
