@@ -42,20 +42,22 @@ export default {
     }
     const userShoppingCart = await supabase.from('amiibo_cart').select()
 
-    const userCart = await supabase
-      .from('amiibo_cart')
-      .select(`amiibo_id, amiibo(character, gameSeries, image, name, price)`)
-    userInfo.realShoppingCart = userCart.data
+    if (userInfo.user.cartLoaded == false) {
+      const userCart = await supabase
+        .from('amiibo_cart')
+        .select(`amiibo_id, amiibo(character, gameSeries, image, name, price)`)
+      userInfo.realShoppingCart = userCart.data
       for (let i = 0; i < userShoppingCart.data.length; i++) {
-      userInfo.totalCount++
-     // console.log(userInfo.totalCount)
-    //  console.log(userShoppingCart.data[i].count)
-      Object.defineProperties(userInfo.realShoppingCart[i], {
-        count: { value: userShoppingCart.data[i].count }
-      })
+        userInfo.totalCount += userShoppingCart.data[i].count
+        Object.defineProperties(userInfo.realShoppingCart[i], {
+          count: { value: userShoppingCart.data[i].count }
+        })
+        console.log(userInfo.totalCount)
+      }
+      userInfo.user.cartLoaded = true
     }
 
-   // console.log(userInfo.realShoppingCart)
+    // console.log(userInfo.realShoppingCart)
   },
   methods: {
     async logOut() {

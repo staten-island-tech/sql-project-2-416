@@ -5,10 +5,10 @@ export const userInformation = defineStore('settings', {
     return {
       user: {
         email: null,
-        loggedIn: false
+        loggedIn: false,
+        cartLoaded: false
       },
       totalCount: 0,
-      shoppingCart: [],
       realShoppingCart: []
     }
   }

@@ -18,12 +18,12 @@ export default {
   methods: {
     async totalpurchase() {
       const { error } = await supabase
-      .from('amiibo_cart')
+        .from('amiibo_cart')
         .delete()
         .eq('email', userInfo.user.email)
         .neq('id', 0)
-        userInfo.totalCount = 0
-        userInfo.realShoppingCart = []
+      userInfo.totalCount = 0
+      userInfo.realShoppingCart = []
     }
   }
 }
@@ -31,7 +31,9 @@ export default {
 
 <template>
   <HeadingTemplate></HeadingTemplate>
-  <button type="button" class="totalPurchase" v-if="userInfo.totalCount > 0" @click="totalpurchase">Purchase (${{userInfo.totalCount * 30}})</button>
+  <button type="button" class="totalPurchase" v-if="userInfo.totalCount > 0" @click="totalpurchase">
+    Purchase (${{ userInfo.totalCount * 30 }})
+  </button>
   <h2 class="pleaseAdd" v-else>Please add something to your cart</h2>
   <div id="cartContainer">
     <Cart
@@ -65,7 +67,6 @@ body,
   flex-wrap: wrap;
 }
 
-
 .totalPurchase {
   display: flex;
   flex-direction: row;
@@ -95,8 +96,7 @@ body,
   color: white;
 }
 
-
-.pleaseAdd{
+.pleaseAdd {
   display: flex;
   font-size: 3rem;
   margin: 0.5rem;

@@ -26,7 +26,19 @@ export const shop = defineStore('shop', () => {
           .insert({ email: userInfo.user.email, amiibo_id: id, price: price, count: 1 })
           .select()
       }
-      userInfo.totalCount += 1
+      const userShoppingCart = await supabase.from('amiibo_cart').select()
+      const userCart = await supabase
+        .from('amiibo_cart')
+        .select(`amiibo_id, amiibo(character, gameSeries, image, name, price)`)
+      userInfo.realShoppingCart = userCart.data
+      for (let i = 0; i < userShoppingCart.data.length; i++) {
+        userInfo.totalCount += 1 / 3
+        Object.defineProperties(userInfo.realShoppingCart[i], {
+          count: { value: userShoppingCart.data[i].count }
+        })
+        console.log('triggered')
+        console.log(userInfo.totalCount)
+      }
     } else {
       location.replace(`${location.href}Login`)
     }
