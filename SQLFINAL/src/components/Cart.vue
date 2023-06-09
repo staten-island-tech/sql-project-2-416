@@ -55,7 +55,6 @@ export default {
         .eq('email', userInfo.user.email)
         .eq('amiibo_id', this.amiibo_id)
       userInfo.realShoppingCart.splice(this.index, 1)
-      userInfo.totalCount -= this.count
     }
   }
 }

@@ -47,7 +47,6 @@ export default {
       .select(`amiibo_id, amiibo(character, gameSeries, image, name, price)`)
     userInfo.realShoppingCart = userCart.data
       for (let i = 0; i < userShoppingCart.data.length; i++) {
-      userInfo.totalCount++
      // console.log(userInfo.totalCount)
     //  console.log(userShoppingCart.data[i].count)
       Object.defineProperties(userInfo.realShoppingCart[i], {
