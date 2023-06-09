@@ -35,6 +35,7 @@
     </div>
   </form>
   <div id="result"></div>
+  <footer></footer>
 </template>
 
 <script>
