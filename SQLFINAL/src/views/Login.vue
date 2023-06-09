@@ -39,6 +39,7 @@ export default {
         userInfo.user.loggedIn = true
         this.email = ''
         this.password = ''
+        location.replace(`/`)
         console.log(userInfo.user)
       }
     }

@@ -12,9 +12,10 @@
       </button>
     </button>
 
+
     <button class="buttonout" type="button">
       <button type="button" class="buttonin" @click.prevent="logOut" v-if="userInfo.user.loggedIn">
-        Sign Out
+        <router-link class="link" to="Login">Sign out</router-link>
       </button>
       <button type="button" class="buttonin" v-else>
         <router-link class="link" to="Login">Login</router-link>
@@ -42,7 +43,6 @@ export default {
       userInfo.user.loggedIn = true
       userInfo.user.email = data.session.user.email
     }
-
     const userShoppingCart = await supabase.from('amiibo_cart').select()
     userInfo.user.shoppingCart = userShoppingCart.data
     console.log(userInfo.user.shoppingCart)
@@ -80,8 +80,6 @@ body,
 .link {
   text-decoration: none;
   color: black;
-  margin-left: 10rem;
-  margin: 2rem;
   font-size: 3rem;
 }
 
@@ -110,7 +108,7 @@ body,
 }
 
 .buttonin {
-  font-size: 2.5rem;
+  font-size: 3rem;
   color: black;
   border: solid 3px black;
   padding: 10px;
