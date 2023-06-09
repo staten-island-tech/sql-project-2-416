@@ -12,6 +12,11 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+<<<<<<< HEAD
+=======
+    "@supabase/supabase-js": "^2.21.0",
+    "aos": "^2.3.4",
+>>>>>>> development
     "pinia": "^2.0.35",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"
