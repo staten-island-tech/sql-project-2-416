@@ -60,18 +60,18 @@ export default {
         email: this.email,
         password: this.password
       })
-      console.log(signUpData)
+     // console.log(signUpData)
       try {
         if (signUpData.data.user.identities.length == 0) {
           alert('Sorry, this email is already in use or is not real.')
         } else {
           if (signUpData.error) {
-            console.log(signUpData.error)
+           // console.log(signUpData.error)
             alert(
               'Please make sure you are entering a real email and that your password is over 6 characters.'
             )
           } else {
-            console.log(signUpData.data)
+          //  console.log(signUpData.data)
             alert(
               'We have sent a verification email to you. Please click the link to verify your account.'
             )

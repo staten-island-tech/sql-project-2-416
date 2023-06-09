@@ -48,14 +48,14 @@ export default {
     userInfo.realShoppingCart = userCart.data
       for (let i = 0; i < userShoppingCart.data.length; i++) {
       userInfo.totalCount++
-      console.log(userInfo.totalCount)
-      console.log(userShoppingCart.data[i].count)
+     // console.log(userInfo.totalCount)
+    //  console.log(userShoppingCart.data[i].count)
       Object.defineProperties(userInfo.realShoppingCart[i], {
         count: { value: userShoppingCart.data[i].count }
       })
     }
 
-    console.log(userInfo.realShoppingCart)
+   // console.log(userInfo.realShoppingCart)
   },
   methods: {
     async logOut() {

@@ -24,7 +24,7 @@ export default {
         password: this.password
       })
       if (error) {
-        console.log(error)
+        //console.log(error)
         alert(
           'Please re-enter (or finish entering) your login credentials. If you do not have an account, please create one.'
         )
@@ -38,7 +38,7 @@ export default {
         this.email = ''
         this.password = ''
         location.replace(`/`)
-        console.log(userInfo.user)
+      //  console.log(userInfo.user)
       }
     }
   }
