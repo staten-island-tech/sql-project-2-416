@@ -47,14 +47,14 @@ export default {
   },
   methods: {
     async deleteFromStore() {
-      userInfo.totalCount -= this.count
+      userInfo.totalCount -= this.count //Subtracts 1 from the total count and 1 from the count of this specific amiibo.
       //  console.log(userInfo.totalCount)
       const { error } = await supabase
         .from('amiibo_cart')
         .delete()
         .eq('email', userInfo.user.email)
-        .eq('amiibo_id', this.amiibo_id)
-      userInfo.realShoppingCart.splice(this.index, 1)
+        .eq('amiibo_id', this.amiibo_id) //Deletes the amiibo by specifying both the user email and the correct amiibo id to ensure that the incorrect amiibo is not deleted.
+      userInfo.realShoppingCart.splice(this.index, 1) // Deletes the amiibo from the user's shopping cart.
     }
   }
 }

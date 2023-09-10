@@ -61,7 +61,7 @@ export default {
         password: this.password
       })
      // console.log(signUpData)
-      try {
+      try { //When the user attempts to sign up, a try-catch is used to create their account.
         if (signUpData.data.user.identities.length == 0) {
           alert('Sorry, this email is already in use or is not real.')
         } else {
@@ -83,7 +83,7 @@ export default {
         }
       }
     }, 
-    samePassword() {
+    samePassword() { 
       return this.password == this.confirm
     }
   }

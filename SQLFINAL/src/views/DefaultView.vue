@@ -5,7 +5,7 @@ import AmiiboCard from '../components/AmiiboCard.vue'
 import { useAmiiboStore } from '../stores/shop.js'
 const AmiiboStore = useAmiiboStore() //AmiiboStore is defined with the useAmiiboStore const
 onMounted(() => {
-  AmiiboStore.fill()
+  AmiiboStore.fill() //On the mount of the page, the .fill function is used to bring in all amiibos from the supabase api onto the user's page.
 })
 </script>
 

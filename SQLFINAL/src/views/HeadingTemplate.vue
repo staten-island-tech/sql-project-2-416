@@ -6,7 +6,7 @@
         <router-link class="link" to="/">Store</router-link>
       </button>
     </button>
-
+<!-- Half of these buttons rely on the user being logged in or not, primarily through the Pinia state management file 'users.js' -->
     <button class="buttonout" type="button" v-if="userInfo.user.loggedIn">
       <button type="button" class="buttonin" v-if="userInfo.user.loggedIn">
         <router-link class="link" to="Cart">Cart</router-link>
@@ -36,14 +36,14 @@ const userInfo = userInformation()
 export default {
   name: 'HeadingTemplate',
   async mounted() {
-    const { data, error } = await supabase.auth.getSession()
+    const { data, error } = await supabase.auth.getSession() //Uses Supabase's auth system to show the user as being logged in in the global state management
     if (data.session) {
       userInfo.user.loggedIn = true
       userInfo.user.email = data.session.user.email
     }
     const userShoppingCart = await supabase.from('amiibo_cart').select()
 
-    if (userInfo.user.cartLoaded == false) {
+    if (userInfo.user.cartLoaded == false) { //Checks if the user's cart has items inside of it.
       const userCart = await supabase
         .from('amiibo_cart')
         .select(`amiibo_id, amiibo(character, gameSeries, image, name, price)`)
@@ -67,6 +67,8 @@ export default {
       } else {
         userInfo.user.email = null
         userInfo.user.loggedIn = false
+        // userInfo.user.cartLoaded = false 
+        // This comment and the statement above it were made on 9/10/23, 3 months after the development of the project.
       }
     }
   }

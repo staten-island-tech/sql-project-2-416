@@ -12,11 +12,11 @@
     <!-- <AmiiboButton
       @click="store.addToCart(name, image, gameSeries, price, character, amiiboSeries)"
     ></AmiiboButton> -->
-    <AmiiboButton @click="store.addToCart(id, price)"></AmiiboButton>
+    <AmiiboButton @click="store.addToCart(id, price)"></AmiiboButton> <!--Button for attached to every amiibo on the store page to add it to the cart.-->
   </div>
 </template>
 
-<script setup>
+<script setup> //Script setup (primarily) used for importing functions, methods, actions, and variables from all other files using Vue.
 import AmiiboButton from '../components/AmiiboButton.vue'
 import { shop } from '@/stores/shop'
 const store = shop()
@@ -34,7 +34,7 @@ export default {
   },
   data() {
     return {
-      title: 'AmiiboCard'
+      title: 'AmiiboCard' 
     }
   },
   props: {
@@ -53,8 +53,6 @@ export default {
       return this.image
     }
   },
-  methods: {
-  }
 }
 </script>
 

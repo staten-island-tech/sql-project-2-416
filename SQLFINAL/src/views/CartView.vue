@@ -16,7 +16,7 @@ export default {
     Cart
   },
   methods: {
-    async totalpurchase() {
+    async totalpurchase() { //Removes everything from the cart to simulate a user purchasing all items in their cart by removing every amiibo, resetting the count of their cart to 0 and deleting every item in the RealShoppingCart array.
       const { error } = await supabase
         .from('amiibo_cart')
         .delete()
@@ -32,14 +32,14 @@ export default {
 <template>
   <HeadingTemplate></HeadingTemplate>
   <header></header>
-  <button type="button" class="totalPurchase" v-if="userInfo.totalCount > 0" @click="totalpurchase">
+  <button type="button" class="totalPurchase" v-if="userInfo.totalCount > 0" @click="totalpurchase"> 
     Purchase (${{ userInfo.totalCount * 30 }})
   </button>
   <h1 class="pleaseAdd" v-else>Please add something to your cart</h1>
   <div id="cartContainer">
     <Cart
       v-for="item in userInfo.realShoppingCart"
-      :index="userInfo.realShoppingCart.indexOf(item)"
+      :index="userInfo.realShoppingCart.indexOf(item)" 
       :name="item.amiibo.name"
       :image="item.amiibo.image"
       :gameSeries="item.amiibo.gameSeries"
@@ -48,8 +48,9 @@ export default {
       :amiibo_id="item.amiibo_id"
       :count="item.count"
     />
-  </div>
-  <footer></footer>
+  </div> 
+<!-- 'Cart' above uses the indexOf method to assign every item in the cart an index. -->  
+<footer></footer>
 </template>
 
 <style lang="css" scoped>
