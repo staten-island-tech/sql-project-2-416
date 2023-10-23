@@ -18,8 +18,7 @@ export default {
     HeadingTemplate
   },
   methods: {
-    async getUsers() {
-      //Using supabase authentication, the username and password are compared to usernames and passwords within authentication.
+    async getUsers() { //Using supabase authentication, the username and password are compared to usernames and passwords within authentication.
       const { data, error } = await supabase.auth.signInWithPassword({
         email: this.email,
         password: this.password
@@ -31,19 +30,17 @@ export default {
         )
       } else if (userInfo.user.email == this.email) {
         alert("You're . . . already logged in?")
-      } else if (userInfo.user.loggedIn == 'true') {
-        //This statement is for users who attempt to manuever back to the sign-in page upon
+      } else if (userInfo.user.loggedIn == 'true') { //This statement is for users who attempt to manuever back to the sign-in page upon
         //logging in, which they are not supposed to do.
         alert('Someone else is logged in. Please log out of this account before you sign in!')
-      } else {
-        //If there is no error and the user's email and password matches with what supabase authentication has, then they are
-        //successfully logged in and are re-routed to the store (DefaultView) page.
+      } else { //If there is no error and the user's email and password matches with what supabase authentication has, then they are 
+      //successfully logged in and are re-routed to the store (DefaultView) page.
         userInfo.user.email = this.email
         userInfo.user.loggedIn = true
         this.email = ''
         this.password = ''
         location.replace(`/`)
-        //  console.log(userInfo.user)
+      //  console.log(userInfo.user)
       }
     }
   }
@@ -58,14 +55,11 @@ export default {
   <div class="containerDiv">
     <form class="userheaders">
       <div class="field">
-        <label id="username" for="emailInput"
-          >Email <input id="emailInput" type="text" v-model="email"
-        /></label>
+        <label id="username" for="emailInput">Email         <input id="emailInput" type="text" v-model="email" /></label>
       </div>
       <div class="field">
-        <label id="password" for="passwordInput"
-          >Password <input id="passwordInput" type="password" v-model="password"
-        /></label>
+        <label id="password" for="passwordInput">Password         <input id="passwordInput" type="password" v-model="password"  /></label>
+
       </div>
       <button class="login" type="submit" @click.prevent="getUsers">Login</button>
       <router-link class="login" id="loginClick" to="SignUp">Sign Up</router-link>
